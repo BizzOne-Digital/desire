@@ -30,7 +30,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-champagne/45 bg-black shadow-[0_14px_45px_rgba(0,0,0,0.42)]">
-      <div className="luxury-container flex h-20 items-center justify-between gap-3 sm:gap-5 md:h-[100px] lg:gap-8">
+      <div className="luxury-container flex h-16 items-center justify-between gap-2 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
         <Link href="/" className="flex items-center" aria-label={`${businessName} home`}>
           {showLogo && logoUrl ? (
             <Image
@@ -38,12 +38,12 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
               width={150}
               height={104}
               alt={`${businessName} logo`}
-              className="h-16 w-auto object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 md:h-[88px]"
+              className="h-12 w-auto max-w-[92px] object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 sm:max-w-none md:h-[88px]"
               priority
               onError={() => setShowLogo(false)}
             />
           ) : (
-            <span className="grid h-14 w-14 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-4xl md:h-20 md:w-20 md:text-5xl">
+            <span className="grid h-11 w-11 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-3xl sm:h-14 sm:w-14 sm:text-4xl md:h-20 md:w-20 md:text-5xl">
               O
             </span>
           )}
@@ -111,25 +111,25 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
           )}
         </nav>
 
-        <div className="flex items-center justify-end gap-1.5 sm:min-w-[150px] sm:gap-4">
-          <Link href="/shop" aria-label="Search products" className="rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne">
-            <Search size={18} />
+        <div className="flex items-center justify-end gap-1 sm:min-w-[150px] sm:gap-4">
+          <Link href="/shop" aria-label="Search products" className="rounded-full p-1.5 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:p-2">
+            <Search size={17} />
           </Link>
           <Link href="/admin/login" aria-label="Admin account" className="hidden rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex">
             <UserRound size={19} />
           </Link>
-          <Link href="/cart" aria-label="Cart" className="relative rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne">
-            <ShoppingBag size={19} />
-            <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-champagne px-1 text-[10px] font-bold text-black">
+          <Link href="/cart" aria-label="Cart" className="relative rounded-full p-1.5 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:p-2">
+            <ShoppingBag size={18} />
+            <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-champagne px-1 text-[9px] font-bold text-black sm:h-5 sm:min-w-5 sm:text-[10px]">
               {count}
             </span>
           </Link>
           <button
-            className="rounded-full p-2 text-ivory lg:hidden"
+            className="rounded-full p-1.5 text-ivory sm:p-2 lg:hidden"
             aria-label="Open menu"
             onClick={() => setOpen(true)}
           >
-            <Menu size={22} />
+            <Menu size={21} />
           </button>
         </div>
       </div>

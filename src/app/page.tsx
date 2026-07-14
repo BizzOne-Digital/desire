@@ -21,38 +21,38 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[100svh] overflow-hidden bg-black pt-20 md:pt-[100px]">
+      <section className="relative min-h-[100svh] overflow-hidden bg-black pt-16 sm:pt-20 md:pt-[100px]">
         <Image
           src="/hero-background.png"
           alt="Black and gold luxury product hero"
           fill
           priority
-          className="object-contain object-[70%_top] opacity-70 sm:object-right sm:opacity-100"
+          className="object-contain object-[74%_top] opacity-60 sm:object-right sm:opacity-100"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.88)_54%,rgba(0,0,0,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.44)_0%,rgba(0,0,0,0.86)_48%,rgba(0,0,0,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.14),transparent_16rem)] sm:bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.16),transparent_18rem)]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-obsidian to-transparent" />
-        <div className="luxury-container relative z-10 flex min-h-[calc(100svh-80px)] items-end pb-12 pt-10 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
-          <Reveal className="max-w-[620px]">
-            <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne sm:gap-4 sm:text-[11px] sm:tracking-[0.28em]">
-              <span className="text-lg leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)]">✦</span>
+        <div className="luxury-container relative z-10 flex min-h-[calc(100svh-64px)] items-end pb-10 pt-8 sm:min-h-[calc(100svh-80px)] sm:pb-12 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
+          <Reveal className="w-full max-w-[620px]">
+            <div className="flex items-center gap-2 text-[8px] font-semibold uppercase tracking-[0.22em] text-champagne min-[380px]:text-[10px] sm:gap-4 sm:text-[11px] sm:tracking-[0.28em]">
+              <span className="text-sm leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)] sm:text-lg">✦</span>
               Made to inspire confidence
             </div>
-            <h1 className="mt-5 font-serif text-[2.75rem] uppercase leading-[0.94] tracking-[0.025em] text-ivory sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
+            <h1 className="mt-4 max-w-[12ch] font-serif text-[2.12rem] uppercase leading-[0.94] tracking-[0.018em] text-ivory min-[380px]:text-[2.55rem] sm:mt-5 sm:max-w-[620px] sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
               Designed to make
               <br />
               you feel
               <br />
               <span className="gold-text">Extraordinary.</span>
             </h1>
-            <p className="mt-5 max-w-[520px] text-sm leading-7 text-ivory/78 md:mt-6 md:text-base">
+            <p className="mt-4 max-w-[520px] text-xs leading-6 text-ivory/78 min-[380px]:text-sm md:mt-6 md:text-base md:leading-7">
               Discover a refined collection created for confidence, comfort, and timeless expression.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-5 md:mt-7">
-              <Link href="/shop" className="inline-flex min-w-44 items-center justify-center gap-4 bg-gold-gradient px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.18em] text-black shadow-gold transition hover:-translate-y-1 sm:px-7 sm:py-4 sm:text-[11px]">
+            <div className="mt-5 flex w-full max-w-sm flex-col gap-2.5 sm:mt-6 sm:flex-row sm:gap-5 md:mt-7">
+              <Link href="/shop" className="inline-flex w-full min-w-0 items-center justify-center gap-3 bg-gold-gradient px-5 py-3 text-[9px] font-bold uppercase tracking-[0.2em] text-black shadow-gold transition hover:-translate-y-1 sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]">
                 Shop Collection <ArrowRight size={15} />
               </Link>
-              <Link href="/about" className="inline-flex min-w-44 items-center justify-center gap-4 border border-champagne/70 bg-black/20 px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.18em] text-champagne transition hover:bg-champagne hover:text-black sm:px-7 sm:py-4 sm:text-[11px]">
+              <Link href="/about" className="inline-flex w-full min-w-0 items-center justify-center gap-3 border border-champagne/70 bg-black/20 px-5 py-3 text-[9px] font-bold uppercase tracking-[0.2em] text-champagne transition hover:bg-champagne hover:text-black sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]">
                 Explore Brand <ArrowRight size={15} />
               </Link>
             </div>
@@ -60,8 +60,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="luxury-container relative py-24">
-        <div className="absolute -right-28 top-8 h-72 w-72 rounded-full border border-champagne/10" />
+      <section className="luxury-container relative py-14 sm:py-20 md:py-24">
+        <div className="absolute -right-20 top-8 h-48 w-48 rounded-full border border-champagne/10 sm:-right-28 sm:h-72 sm:w-72" />
         <SectionHeading
           eyebrow="Collections"
           title="Curated for the way luxury should feel."
@@ -70,12 +70,12 @@ export default async function HomePage() {
         <div className="grid gap-5 md:grid-cols-3">
           {categories.map((category) => (
             <Reveal key={category.slug}>
-              <Link href={`/shop?category=${category.slug}`} className="luxury-frame group relative block min-h-[460px] overflow-hidden rounded-[2.2rem] border border-champagne/15 shadow-soft">
+              <Link href={`/shop?category=${category.slug}`} className="luxury-frame group relative block min-h-[360px] overflow-hidden rounded-[1.6rem] border border-champagne/15 shadow-soft sm:min-h-[460px] sm:rounded-[2.2rem]">
                 <Image src={category.imageUrl} alt={category.name} fill className="object-cover transition duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
                 <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 group-hover:bg-radial-gold" />
-                <div className="absolute inset-x-0 bottom-0 p-7">
-                  <h2 className="font-serif text-4xl text-ivory">{category.name}</h2>
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+                  <h2 className="font-serif text-3xl text-ivory sm:text-4xl">{category.name}</h2>
                   <p className="mt-3 text-sm leading-6 text-ivory/68">{category.description}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-champagne">
                     View Collection <ArrowRight size={15} />
@@ -87,7 +87,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-y border-champagne/10 bg-black/50 py-24">
+      <section className="relative overflow-hidden border-y border-champagne/10 bg-black/50 py-14 sm:py-20 md:py-24">
         <div className="gold-orb left-1/2 top-0 -translate-x-1/2 opacity-45" />
         <div className="luxury-container">
           <SectionHeading
@@ -104,9 +104,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="luxury-container grid gap-10 py-28 lg:grid-cols-2 lg:items-center">
+      <section className="luxury-container grid gap-8 py-16 sm:py-20 md:py-28 lg:grid-cols-2 lg:items-center">
         <Reveal>
-          <div className="luxury-frame relative aspect-[4/5] overflow-hidden rounded-[2.4rem] border border-champagne/18 shadow-gold">
+          <div className="luxury-frame relative aspect-[4/5] overflow-hidden rounded-[1.6rem] border border-champagne/18 shadow-gold sm:rounded-[2.4rem]">
             <Image
               src="/pages/about-hero.png"
               alt="Elegant brand story editorial"
@@ -117,33 +117,33 @@ export default async function HomePage() {
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="mb-8 grid grid-cols-2 gap-3">
+          <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-8 sm:gap-3">
             {["Curated", "Gift Ready", "Mobile First", "Admin Editable"].map((item) => (
-              <div key={item} className="rounded-full border border-champagne/18 bg-white/[0.035] px-4 py-2 text-center text-xs uppercase tracking-[0.2em] text-ivory/60">
+              <div key={item} className="rounded-full border border-champagne/18 bg-white/[0.035] px-3 py-2 text-center text-[9px] uppercase tracking-[0.16em] text-ivory/60 sm:px-4 sm:text-xs sm:tracking-[0.2em]">
                 {item}
               </div>
             ))}
           </div>
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-champagne">Brand Story</p>
-          <h2 className="mt-4 font-serif text-5xl leading-tight text-ivory md:text-7xl">
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs sm:tracking-[0.35em]">Brand Story</p>
+          <h2 className="mt-4 font-serif text-4xl leading-tight text-ivory sm:text-5xl md:text-7xl">
             Helping people feel good through elevated choice.
           </h2>
-          <p className="mt-6 text-lg leading-8 text-ivory/70">
+          <p className="mt-5 text-sm leading-7 text-ivory/70 sm:text-lg sm:leading-8">
             ONLY COLLECTION is built around thoughtful selection, beautiful presentation, and a
             shopping experience that feels calm, confident, and personal.
           </p>
-          <Link href="/about" className="mt-8 inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.24em] text-champagne">
+          <Link href="/about" className="mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-champagne sm:text-sm sm:tracking-[0.24em]">
             Learn More <ArrowRight size={16} />
           </Link>
         </Reveal>
       </section>
 
-      <section className="luxury-container py-24">
+      <section className="luxury-container py-14 sm:py-20 md:py-24">
         <SectionHeading eyebrow="Services" title="Support that feels personal." centered />
         <div className="grid gap-5 md:grid-cols-4">
           {services.map((service) => (
             <Reveal key={service.slug}>
-              <article className="glass-panel group h-full rounded-[1.8rem] p-6 transition duration-500 hover:-translate-y-2 hover:border-champagne/40 hover:shadow-gold">
+              <article className="glass-panel group h-full rounded-[1.5rem] p-4 transition duration-500 hover:-translate-y-2 hover:border-champagne/40 hover:shadow-gold sm:rounded-[1.8rem] sm:p-6">
                 <div className="relative mb-5 aspect-square overflow-hidden rounded-[1.2rem]">
                   <Image src={service.imageUrl} alt={service.title} fill className="object-cover transition duration-700 group-hover:scale-105" />
                 </div>
@@ -155,7 +155,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden py-28">
+      <section className="relative overflow-hidden py-16 sm:py-20 md:py-28">
         <Image
           src="/pages/gallery-hero.png"
           alt="Luxury statement"
@@ -164,30 +164,30 @@ export default async function HomePage() {
         />
         <div className="absolute inset-0 bg-black/70" />
         <Reveal className="luxury-container relative z-10 max-w-4xl text-center">
-          <div className="mx-auto mb-8 h-px w-32 bg-gold-gradient" />
-          <blockquote className="font-serif text-5xl leading-tight text-ivory md:text-7xl">
+          <div className="mx-auto mb-6 h-px w-24 bg-gold-gradient sm:mb-8 sm:w-32" />
+          <blockquote className="font-serif text-3xl leading-tight text-ivory sm:text-5xl md:text-7xl">
             “Luxury is not only how something looks. It is how it makes you feel.”
           </blockquote>
         </Reveal>
       </section>
 
-      <section className="luxury-container py-24">
+      <section className="luxury-container py-14 sm:py-20 md:py-24">
         <SectionHeading eyebrow="Gallery" title="A refined visual world." centered />
         <GalleryGrid items={galleryItems.slice(0, 6)} />
         <div className="mt-10 text-center">
-          <Link href="/gallery" className="inline-flex items-center gap-3 rounded-full border border-champagne/40 px-7 py-3 text-sm font-bold uppercase tracking-[0.22em] text-ivory hover:bg-champagne/10">
+          <Link href="/gallery" className="inline-flex items-center gap-3 rounded-full border border-champagne/40 px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-ivory hover:bg-champagne/10 sm:px-7 sm:text-sm sm:tracking-[0.22em]">
             View Gallery <ArrowRight size={16} />
           </Link>
         </div>
       </section>
 
-      <section className="border-y border-champagne/10 bg-black/36 py-24">
+      <section className="border-y border-champagne/10 bg-black/36 py-14 sm:py-20 md:py-24">
         <div className="luxury-container">
           <SectionHeading eyebrow="Testimonials" title="Warm words from customers." centered />
           <div className="grid gap-5 md:grid-cols-4">
             {testimonials.map((testimonial) => (
               <Reveal key={testimonial.name}>
-                <article className="glass-panel h-full rounded-[1.6rem] p-6">
+                <article className="glass-panel h-full rounded-[1.4rem] p-5 sm:rounded-[1.6rem] sm:p-6">
                   <p className="text-sm text-champagne">{"★".repeat(testimonial.rating)}</p>
                   <p className="mt-5 text-sm leading-7 text-ivory/72">“{testimonial.review}”</p>
                   <p className="mt-6 font-serif text-xl text-ivory">{testimonial.name}</p>
@@ -198,7 +198,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="luxury-container py-24 text-center">
+      <section className="luxury-container py-14 text-center sm:py-20 md:py-24">
         <SectionHeading
           eyebrow="Newsletter"
           title="Notes from the collection."
@@ -208,13 +208,13 @@ export default async function HomePage() {
         <NewsletterForm />
       </section>
 
-      <section className="luxury-container pb-24">
-        <div className="glass-panel rounded-[2.5rem] p-10 text-center md:p-16">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-champagne">Final Call</p>
-          <h2 className="mt-4 font-serif text-5xl text-ivory md:text-7xl">
+      <section className="luxury-container pb-16 sm:pb-20 md:pb-24">
+        <div className="glass-panel rounded-[1.7rem] p-6 text-center sm:rounded-[2.5rem] sm:p-10 md:p-16">
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs sm:tracking-[0.35em]">Final Call</p>
+          <h2 className="mt-4 font-serif text-4xl text-ivory sm:text-5xl md:text-7xl">
             Find Something That Feels Like You.
           </h2>
-          <Link href="/shop" className="mt-8 inline-flex rounded-full bg-gold-gradient px-8 py-4 text-sm font-bold uppercase tracking-[0.24em] text-black">
+          <Link href="/shop" className="mt-7 inline-flex rounded-full bg-gold-gradient px-7 py-3.5 text-xs font-bold uppercase tracking-[0.22em] text-black sm:mt-8 sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.24em]">
             Shop Now
           </Link>
         </div>

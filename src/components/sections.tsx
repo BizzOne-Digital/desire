@@ -19,13 +19,13 @@ export function PageHero({
   cta?: { label: string; href: string };
 }) {
   return (
-    <section className="relative min-h-[68svh] overflow-hidden pt-24 md:min-h-[70vh] md:pt-32">
+    <section className="relative min-h-[62svh] overflow-hidden pt-20 sm:min-h-[68svh] sm:pt-24 md:min-h-[70vh] md:pt-32">
       <Image src={image} alt="" fill priority className="image-mask object-cover opacity-45" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/55 to-obsidian" />
-      <div className="luxury-container relative z-10 flex min-h-[56svh] items-end pb-10 md:min-h-[60vh] md:pb-16">
+      <div className="luxury-container relative z-10 flex min-h-[50svh] items-end pb-9 sm:min-h-[56svh] sm:pb-10 md:min-h-[60vh] md:pb-16">
         <Reveal className="max-w-3xl">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne md:text-xs md:tracking-[0.35em]">{eyebrow}</p>
-          <h1 className="mt-4 font-serif text-4xl leading-[0.95] text-ivory sm:text-5xl md:mt-5 md:text-7xl lg:text-8xl">
+          <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-champagne sm:text-[10px] md:text-xs md:tracking-[0.35em]">{eyebrow}</p>
+          <h1 className="mt-4 font-serif text-[2rem] leading-[0.95] text-ivory min-[380px]:text-4xl sm:text-5xl md:mt-5 md:text-7xl lg:text-8xl">
             {title}
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-ivory/72 md:mt-6 md:text-lg md:leading-8">{text}</p>
@@ -56,9 +56,9 @@ export function SectionHeading({
   centered?: boolean;
 }) {
   return (
-    <Reveal className={cn("mb-8 md:mb-10", centered && "mx-auto max-w-3xl text-center")}>
-      <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne md:text-xs md:tracking-[0.34em]">{eyebrow}</p>
-      <h2 className="mt-3 font-serif text-3xl leading-tight text-ivory sm:text-4xl md:text-6xl">{title}</h2>
+    <Reveal className={cn("mb-7 md:mb-10", centered && "mx-auto max-w-3xl text-center")}>
+      <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-champagne sm:text-[10px] md:text-xs md:tracking-[0.34em]">{eyebrow}</p>
+      <h2 className="mt-3 font-serif text-[1.65rem] leading-tight text-ivory min-[380px]:text-3xl sm:text-4xl md:text-6xl">{title}</h2>
       {text && <p className="mt-4 text-sm leading-7 text-ivory/68 md:mt-5 md:text-base md:leading-8">{text}</p>}
     </Reveal>
   );
@@ -72,17 +72,17 @@ export function EditorialImageStrip({
   title?: string;
 }) {
   return (
-    <section className="luxury-container py-20">
+    <section className="luxury-container py-14 sm:py-20">
       <SectionHeading
         eyebrow="Imagery"
         title={title}
         text="Each page includes rich editorial imagery so the experience feels visual, premium, and complete across desktop and mobile."
         centered
       />
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-5">
         {images.slice(0, 5).map((image, index) => (
           <Reveal key={image} delay={index * 0.04}>
-            <div className={cn("relative overflow-hidden rounded-[1.4rem] border border-champagne/14", index % 2 === 0 ? "aspect-[3/4]" : "aspect-square md:mt-10")}>
+            <div className={cn("relative overflow-hidden rounded-[1rem] border border-champagne/14 sm:rounded-[1.4rem]", index % 2 === 0 ? "aspect-[3/4]" : "aspect-square md:mt-10")}>
               <Image
                 src={image}
                 alt={`${title} ${index + 1}`}

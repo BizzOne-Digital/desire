@@ -28,19 +28,19 @@ export function SiteFooter({
   logoUrl?: string;
 }) {
   return (
-    <footer className="relative overflow-hidden border-t border-champagne/15 bg-black pt-20">
+    <footer className="relative overflow-hidden border-t border-champagne/15 bg-black pt-14 sm:pt-20">
       <div className="gold-orb -left-32 top-10 opacity-55" />
       <div className="absolute inset-x-0 top-0 h-px bg-gold-gradient opacity-70" />
-      <div className="luxury-container grid gap-12 pb-14 lg:grid-cols-[1.35fr_0.8fr_0.8fr_1.2fr]">
+      <div className="luxury-container grid gap-9 pb-10 sm:gap-12 sm:pb-14 lg:grid-cols-[1.35fr_0.8fr_0.8fr_1.2fr]">
         <div className="relative z-10">
           <Image
             src={logoUrl}
             width={260}
             height={170}
             alt={`${businessName} logo`}
-            className="h-32 w-auto object-contain drop-shadow-[0_0_38px_rgba(215,181,109,0.28)] md:h-40"
+            className="h-24 w-auto object-contain drop-shadow-[0_0_38px_rgba(215,181,109,0.28)] sm:h-32 md:h-40"
           />
-          <p className="mt-5 max-w-sm text-sm leading-7 text-ivory/70">
+          <p className="mt-4 max-w-sm text-sm leading-7 text-ivory/70 sm:mt-5">
             Thoughtfully selected products, premium presentation, and an elevated shopping
             experience designed to help every customer feel good.
           </p>
@@ -48,7 +48,7 @@ export function SiteFooter({
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-xs font-bold uppercase tracking-[0.28em] text-champagne">Explore</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">Explore</h2>
           <div className="mt-5 grid gap-3">
             {links.map(([label, href]) => (
               <Link key={href} href={href} className="text-sm text-ivory/68 transition hover:text-champagne">
@@ -59,7 +59,7 @@ export function SiteFooter({
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-xs font-bold uppercase tracking-[0.28em] text-champagne">Support</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">Support</h2>
           <div className="mt-5 grid gap-3">
             {support.map(([label, href]) => (
               <Link key={href} href={href} className="text-sm text-ivory/68 transition hover:text-champagne">
@@ -70,7 +70,7 @@ export function SiteFooter({
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-xs font-bold uppercase tracking-[0.28em] text-champagne">Stay Close</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">Stay Close</h2>
           <p className="mt-5 text-sm leading-7 text-ivory/70">
             Receive refined product updates, thoughtful gift ideas, and collection notes.
           </p>
