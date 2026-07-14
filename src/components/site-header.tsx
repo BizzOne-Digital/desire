@@ -30,7 +30,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-champagne/45 bg-black shadow-[0_14px_45px_rgba(0,0,0,0.42)]">
-      <div className="luxury-container flex h-[100px] items-center justify-between gap-8">
+      <div className="luxury-container flex h-20 items-center justify-between gap-3 sm:gap-5 md:h-[100px] lg:gap-8">
         <Link href="/" className="flex items-center" aria-label={`${businessName} home`}>
           {showLogo && logoUrl ? (
             <Image
@@ -38,12 +38,12 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
               width={150}
               height={104}
               alt={`${businessName} logo`}
-              className="h-[88px] w-auto object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)]"
+              className="h-16 w-auto object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 md:h-[88px]"
               priority
               onError={() => setShowLogo(false)}
             />
           ) : (
-            <span className="grid h-20 w-20 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-5xl">
+            <span className="grid h-14 w-14 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-4xl md:h-20 md:w-20 md:text-5xl">
               O
             </span>
           )}
@@ -111,15 +111,15 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
           )}
         </nav>
 
-        <div className="flex min-w-[150px] items-center justify-end gap-4">
+        <div className="flex items-center justify-end gap-1.5 sm:min-w-[150px] sm:gap-4">
           <Link href="/shop" aria-label="Search products" className="rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne">
-            <Search size={19} />
+            <Search size={18} />
           </Link>
           <Link href="/admin/login" aria-label="Admin account" className="hidden rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex">
             <UserRound size={19} />
           </Link>
           <Link href="/cart" aria-label="Cart" className="relative rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne">
-            <ShoppingBag size={20} />
+            <ShoppingBag size={19} />
             <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-champagne px-1 text-[10px] font-bold text-black">
               {count}
             </span>
@@ -129,7 +129,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
             aria-label="Open menu"
             onClick={() => setOpen(true)}
           >
-            <Menu />
+            <Menu size={22} />
           </button>
         </div>
       </div>
@@ -143,21 +143,21 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
             exit={{ opacity: 0 }}
           >
             <motion.nav
-              className="absolute right-0 top-0 h-full w-[86vw] max-w-sm border-l border-champagne/20 bg-noir p-7 shadow-soft"
+              className="absolute right-0 top-0 h-full w-[88vw] max-w-sm overflow-y-auto border-l border-champagne/20 bg-noir p-5 shadow-soft sm:p-7"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 230, damping: 28 }}
               aria-label="Mobile navigation"
             >
-              <div className="mb-10 flex items-center justify-between">
+              <div className="mb-8 flex items-center justify-between sm:mb-10">
                 {showLogo && logoUrl ? (
                   <Image
                     src={logoUrl}
                     width={128}
                     height={92}
                     alt={`${businessName} logo`}
-                    className="h-20 w-auto object-contain"
+                    className="h-16 w-auto object-contain sm:h-20"
                   />
                 ) : (
                   <span className="grid h-16 w-16 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-4xl">
@@ -168,12 +168,12 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
                   <X />
                 </button>
               </div>
-              <div className="grid gap-5">
+              <div className="grid gap-4 sm:gap-5">
                 {navItems.map(([label, href]) => (
-                  <div key={href} className="border-b border-white/10 pb-4">
+                  <div key={href} className="border-b border-white/10 pb-3 sm:pb-4">
                     <Link
                       href={href}
-                      className="font-serif text-3xl text-ivory transition hover:text-champagne"
+                      className="font-serif text-2xl text-ivory transition hover:text-champagne sm:text-3xl"
                     >
                       {label}
                     </Link>

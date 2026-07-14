@@ -21,39 +21,38 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-screen overflow-hidden bg-black pt-[100px]">
+      <section className="relative min-h-[100svh] overflow-hidden bg-black pt-20 md:pt-[100px]">
         <Image
           src="/hero-background.png"
           alt="Black and gold luxury product hero"
           fill
           priority
-          className="object-contain object-right"
+          className="object-contain object-[70%_top] opacity-70 sm:object-right sm:opacity-100"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.16),transparent_18rem)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.88)_54%,rgba(0,0,0,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.14),transparent_16rem)] sm:bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.16),transparent_18rem)]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-obsidian to-transparent" />
-        <div className="luxury-container relative z-10 flex min-h-[calc(100vh-100px)] items-start pt-20 md:pt-24">
+        <div className="luxury-container relative z-10 flex min-h-[calc(100svh-80px)] items-end pb-12 pt-10 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
           <Reveal className="max-w-[620px]">
-            <div className="flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-champagne">
+            <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne sm:gap-4 sm:text-[11px] sm:tracking-[0.28em]">
               <span className="text-lg leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)]">✦</span>
-              <span className="h-px w-14 bg-gold-gradient" />
               Made to inspire confidence
             </div>
-            <h1 className="mt-7 font-serif text-5xl uppercase leading-[0.96] tracking-[0.035em] text-ivory md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
+            <h1 className="mt-5 font-serif text-[2.75rem] uppercase leading-[0.94] tracking-[0.025em] text-ivory sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
               Designed to make
               <br />
               you feel
               <br />
               <span className="gold-text">Extraordinary.</span>
             </h1>
-            <p className="mt-6 max-w-[520px] text-[15px] leading-7 text-ivory/78 md:text-base">
+            <p className="mt-5 max-w-[520px] text-sm leading-7 text-ivory/78 md:mt-6 md:text-base">
               Discover a refined collection created for confidence, comfort, and timeless expression.
             </p>
-            <div className="mt-7 flex flex-col gap-5 sm:flex-row">
-              <Link href="/shop" className="inline-flex min-w-44 items-center justify-center gap-4 bg-gold-gradient px-7 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-black shadow-gold transition hover:-translate-y-1">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-5 md:mt-7">
+              <Link href="/shop" className="inline-flex min-w-44 items-center justify-center gap-4 bg-gold-gradient px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.18em] text-black shadow-gold transition hover:-translate-y-1 sm:px-7 sm:py-4 sm:text-[11px]">
                 Shop Collection <ArrowRight size={15} />
               </Link>
-              <Link href="/about" className="inline-flex min-w-44 items-center justify-center gap-4 border border-champagne/70 bg-black/20 px-7 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-champagne transition hover:bg-champagne hover:text-black">
+              <Link href="/about" className="inline-flex min-w-44 items-center justify-center gap-4 border border-champagne/70 bg-black/20 px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.18em] text-champagne transition hover:bg-champagne hover:text-black sm:px-7 sm:py-4 sm:text-[11px]">
                 Explore Brand <ArrowRight size={15} />
               </Link>
             </div>

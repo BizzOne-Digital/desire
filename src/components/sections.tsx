@@ -19,20 +19,20 @@ export function PageHero({
   cta?: { label: string; href: string };
 }) {
   return (
-    <section className="relative min-h-[70vh] overflow-hidden pt-32">
+    <section className="relative min-h-[68svh] overflow-hidden pt-24 md:min-h-[70vh] md:pt-32">
       <Image src={image} alt="" fill priority className="image-mask object-cover opacity-45" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/55 to-obsidian" />
-      <div className="luxury-container relative z-10 flex min-h-[60vh] items-end pb-16">
+      <div className="luxury-container relative z-10 flex min-h-[56svh] items-end pb-10 md:min-h-[60vh] md:pb-16">
         <Reveal className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-champagne">{eyebrow}</p>
-          <h1 className="mt-5 font-serif text-5xl leading-[0.95] text-ivory md:text-7xl lg:text-8xl">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne md:text-xs md:tracking-[0.35em]">{eyebrow}</p>
+          <h1 className="mt-4 font-serif text-4xl leading-[0.95] text-ivory sm:text-5xl md:mt-5 md:text-7xl lg:text-8xl">
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-ivory/72">{text}</p>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-ivory/72 md:mt-6 md:text-lg md:leading-8">{text}</p>
           {cta && (
             <Link
               href={cta.href}
-              className="mt-8 inline-flex items-center gap-3 rounded-full border border-champagne/40 px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-ivory transition hover:bg-champagne hover:text-black"
+              className="mt-7 inline-flex items-center gap-3 rounded-full border border-champagne/40 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-ivory transition hover:bg-champagne hover:text-black md:mt-8 md:px-6 md:text-sm md:tracking-[0.22em]"
             >
               {cta.label}
               <ArrowRight size={16} />
@@ -56,10 +56,10 @@ export function SectionHeading({
   centered?: boolean;
 }) {
   return (
-    <Reveal className={cn("mb-10", centered && "mx-auto max-w-3xl text-center")}>
-      <p className="text-xs font-bold uppercase tracking-[0.34em] text-champagne">{eyebrow}</p>
-      <h2 className="mt-3 font-serif text-4xl leading-tight text-ivory md:text-6xl">{title}</h2>
-      {text && <p className="mt-5 text-base leading-8 text-ivory/68">{text}</p>}
+    <Reveal className={cn("mb-8 md:mb-10", centered && "mx-auto max-w-3xl text-center")}>
+      <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne md:text-xs md:tracking-[0.34em]">{eyebrow}</p>
+      <h2 className="mt-3 font-serif text-3xl leading-tight text-ivory sm:text-4xl md:text-6xl">{title}</h2>
+      {text && <p className="mt-4 text-sm leading-7 text-ivory/68 md:mt-5 md:text-base md:leading-8">{text}</p>}
     </Reveal>
   );
 }

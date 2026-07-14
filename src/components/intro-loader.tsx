@@ -2,59 +2,66 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function IntroLoader({
   businessName,
-  logoUrl
+  logoUrl,
+  onComplete
 }: {
   businessName: string;
   logoUrl: string;
+  onComplete?: () => void;
 }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const [showLogo, setShowLogo] = useState(true);
   const reducedMotion = useReducedMotion();
+  const completed = useRef(false);
 
-  useEffect(() => {
-    const seen = window.sessionStorage.getItem("only_intro_seen");
-    if (seen) {
+  const completeIntro = useCallback(() => {
+    if (completed.current) {
       return;
     }
+    completed.current = true;
+    setVisible(false);
+    onComplete?.();
+  }, [onComplete]);
 
-    setVisible(true);
+  useEffect(() => {
     const interval = window.setInterval(() => {
       setProgress((current) => Math.min(current + Math.floor(Math.random() * 18) + 8, 100));
     }, reducedMotion ? 40 : 120);
 
     const timeout = window.setTimeout(() => {
-      window.sessionStorage.setItem("only_intro_seen", "true");
-      setVisible(false);
+      completeIntro();
     }, reducedMotion ? 300 : 1650);
 
     return () => {
       window.clearInterval(interval);
       window.clearTimeout(timeout);
     };
-  }, [reducedMotion]);
+  }, [completeIntro, reducedMotion]);
 
   useEffect(() => {
     if (progress >= 100) {
-      const timeout = window.setTimeout(() => setVisible(false), 260);
+      const timeout = window.setTimeout(() => {
+        completeIntro();
+      }, 260);
       return () => window.clearTimeout(timeout);
     }
-  }, [progress]);
+  }, [completeIntro, progress]);
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] grid place-items-center bg-black"
+          className="fixed inset-0 z-[100] grid place-items-center bg-black px-6"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
-          <div className="relative text-center">
+          <div className="relative w-full max-w-sm text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -67,16 +74,16 @@ export function IntroLoader({
                   alt={`${businessName} logo`}
                   width={150}
                   height={90}
-                  className="h-24 w-auto object-contain"
+                  className="mx-auto h-20 w-auto object-contain sm:h-24"
                   onError={() => setShowLogo(false)}
                   priority
                 />
               ) : (
-                <span className="font-serif text-5xl gold-text">{businessName}</span>
+                <span className="font-serif text-4xl gold-text sm:text-5xl">{businessName}</span>
               )}
             </motion.div>
             <motion.div
-              className="mx-auto h-px w-64 overflow-hidden bg-white/10"
+              className="mx-auto h-px w-full max-w-64 overflow-hidden bg-white/10"
               initial={{ width: 0 }}
               animate={{ width: 256 }}
               transition={{ duration: 0.7 }}

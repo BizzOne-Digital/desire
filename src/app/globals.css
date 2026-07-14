@@ -64,6 +64,12 @@ img {
   margin-inline: auto;
 }
 
+@media (max-width: 480px) {
+  .luxury-container {
+    width: min(1180px, calc(100vw - 1.25rem));
+  }
+}
+
 .gold-text {
   background: linear-gradient(135deg, #fff1b8 0%, #d7b56d 45%, #a97828 100%);
   -webkit-background-clip: text;
