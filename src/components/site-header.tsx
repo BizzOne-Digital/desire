@@ -30,7 +30,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-champagne/35 bg-black/96 shadow-[0_14px_45px_rgba(0,0,0,0.42)] backdrop-blur-xl">
-      <div className="luxury-container flex h-[66px] items-center justify-between gap-3 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
+      <div className="luxury-container flex h-[72px] items-center justify-between gap-3 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
         <Link href="/" className="flex min-w-0 items-center" aria-label={`${businessName} home`}>
           {showLogo && logoUrl ? (
             <Image
@@ -38,12 +38,12 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
               width={150}
               height={104}
               alt={`${businessName} logo`}
-              className="h-14 w-auto max-w-[118px] object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 sm:max-w-none md:h-[88px]"
+              className="h-16 w-auto max-w-[138px] object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 sm:max-w-none md:h-[88px]"
               priority
               onError={() => setShowLogo(false)}
             />
           ) : (
-            <span className="grid h-12 w-12 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-3xl sm:h-14 sm:w-14 sm:text-4xl md:h-20 md:w-20 md:text-5xl">
+            <span className="grid h-14 w-14 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-4xl sm:h-14 sm:w-14 sm:text-4xl md:h-20 md:w-20 md:text-5xl">
               O
             </span>
           )}
@@ -118,18 +118,18 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
           <Link href="/admin/login" aria-label="Admin account" className="hidden rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex">
             <UserRound size={19} />
           </Link>
-          <Link href="/cart" aria-label="Cart" className="relative rounded-full p-1.5 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:p-2">
-            <ShoppingBag size={18} />
+          <Link href="/cart" aria-label="Cart" className="relative rounded-full border border-champagne/15 bg-white/[0.03] p-2 text-ivory/85 transition hover:bg-white/10 hover:text-champagne sm:border-0 sm:bg-transparent">
+            <ShoppingBag size={20} />
             <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-champagne px-1 text-[9px] font-bold text-black sm:h-5 sm:min-w-5 sm:text-[10px]">
               {count}
             </span>
           </Link>
           <button
-            className="rounded-full p-1.5 text-ivory sm:p-2 lg:hidden"
+            className="rounded-full border border-champagne/15 bg-white/[0.03] p-2 text-ivory sm:border-0 sm:bg-transparent lg:hidden"
             aria-label="Open menu"
             onClick={() => setOpen(true)}
           >
-            <Menu size={21} />
+            <Menu size={23} />
           </button>
         </div>
       </div>

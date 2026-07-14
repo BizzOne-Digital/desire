@@ -21,36 +21,36 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[88svh] overflow-hidden bg-black pt-[66px] sm:min-h-[100svh] sm:pt-20 md:pt-[100px]">
+      <section className="relative min-h-[100svh] overflow-hidden bg-black pt-[72px] sm:pt-20 md:pt-[100px]">
         <Image
           src="/hero-background.png"
           alt="Black and gold luxury product hero"
           fill
           priority
-          className="object-cover object-[66%_top] opacity-42 sm:object-contain sm:object-right sm:opacity-100"
+          className="object-cover object-[58%_top] opacity-[0.52] sm:object-contain sm:object-right sm:opacity-100"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.50)_0%,rgba(0,0,0,0.76)_38%,rgba(0,0,0,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_54%,rgba(215,181,109,0.17),transparent_12rem)] sm:bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.16),transparent_18rem)]" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-obsidian to-transparent" />
-        <div className="luxury-container relative z-10 flex min-h-[calc(88svh-66px)] items-center pb-8 pt-7 sm:min-h-[calc(100svh-80px)] sm:items-end sm:pb-12 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.46)_0%,rgba(0,0,0,0.68)_34%,rgba(0,0,0,0.96)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_56%,rgba(215,181,109,0.18),transparent_13rem)] sm:bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.16),transparent_18rem)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-obsidian via-obsidian/80 to-transparent" />
+        <div className="luxury-container relative z-10 flex min-h-[calc(100svh-72px)] items-center pb-10 pt-8 sm:min-h-[calc(100svh-80px)] sm:items-end sm:pb-12 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
           <Reveal className="w-full max-w-[620px]">
-            <div className="mx-auto flex w-fit items-center justify-center gap-2 text-[8px] font-semibold uppercase tracking-[0.22em] text-champagne min-[380px]:text-[9px] sm:mx-0 sm:justify-start sm:gap-4 sm:text-[11px] sm:tracking-[0.28em]">
-              <span className="text-sm leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)] sm:text-lg">✦</span>
+            <div className="mx-auto flex w-fit items-center justify-center gap-2 text-[9px] font-semibold uppercase tracking-[0.24em] text-champagne min-[380px]:text-[10px] sm:mx-0 sm:justify-start sm:gap-4 sm:text-[11px] sm:tracking-[0.28em]">
+              <span className="text-base leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)] sm:text-lg">✦</span>
               Made to inspire confidence
             </div>
-            <h1 className="mx-auto mt-4 max-w-[18rem] text-center font-serif text-[1.82rem] uppercase leading-[0.92] tracking-[0.018em] text-ivory min-[380px]:text-[2.02rem] sm:mx-0 sm:mt-5 sm:max-w-[620px] sm:text-left sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
+            <h1 className="mx-auto mt-5 max-w-[21rem] text-center font-serif text-[clamp(2.35rem,11vw,3.05rem)] uppercase leading-[0.88] tracking-[0.005em] text-ivory sm:mx-0 sm:max-w-[620px] sm:text-left sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
               <span className="block">Designed to make</span>
               <span className="block">you feel</span>
               <span className="gold-text block">Extraordinary.</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-[30ch] text-center text-xs leading-6 text-ivory/78 min-[380px]:text-[13px] sm:mx-0 sm:max-w-[520px] sm:text-left sm:text-sm md:mt-6 md:text-base md:leading-7">
+            <p className="mx-auto mt-5 max-w-[32ch] text-center text-[13px] leading-6 text-ivory/78 sm:mx-0 sm:max-w-[520px] sm:text-left sm:text-sm md:mt-6 md:text-base md:leading-7">
               Discover a refined collection created for confidence, comfort, and timeless expression.
             </p>
-            <div className="mx-auto mt-5 flex w-full max-w-[18rem] flex-col gap-2.5 sm:mx-0 sm:mt-6 sm:max-w-sm sm:flex-row sm:gap-5 md:mt-7">
-              <Link href="/shop" className="inline-flex w-full min-w-0 items-center justify-center gap-3 bg-gold-gradient px-5 py-3 text-[9px] font-bold uppercase tracking-[0.2em] text-black shadow-gold transition hover:-translate-y-1 sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]">
+            <div className="mx-auto mt-6 flex w-full max-w-[21rem] flex-col gap-3 sm:mx-0 sm:max-w-sm sm:flex-row sm:gap-5 md:mt-7">
+              <Link href="/shop" className="inline-flex w-full min-w-0 items-center justify-center gap-3 bg-gold-gradient px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black shadow-gold transition hover:-translate-y-1 sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]">
                 Shop Collection <ArrowRight size={15} />
               </Link>
-              <Link href="/about" className="inline-flex w-full min-w-0 items-center justify-center gap-3 border border-champagne/70 bg-black/20 px-5 py-3 text-[9px] font-bold uppercase tracking-[0.2em] text-champagne transition hover:bg-champagne hover:text-black sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]">
+              <Link href="/about" className="inline-flex w-full min-w-0 items-center justify-center gap-3 border border-champagne/70 bg-black/20 px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] text-champagne transition hover:bg-champagne hover:text-black sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]">
                 Explore Brand <ArrowRight size={15} />
               </Link>
             </div>
@@ -58,7 +58,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="luxury-container relative py-12 sm:py-20 md:py-24">
+      <section className="luxury-container relative py-16 sm:py-20 md:py-24">
         <div className="absolute -right-20 top-8 h-48 w-48 rounded-full border border-champagne/10 sm:-right-28 sm:h-72 sm:w-72" />
         <SectionHeading
           eyebrow="Collections"
