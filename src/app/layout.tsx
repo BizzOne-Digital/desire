@@ -42,6 +42,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: absoluteUrl()
+  },
+  icons: {
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    shortcut: ["/logo.png"],
+    apple: [{ url: "/logo.png", type: "image/png" }]
   }
 };
 
