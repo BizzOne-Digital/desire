@@ -21,7 +21,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[92svh] overflow-hidden bg-black pt-14 sm:min-h-[100svh] sm:pt-20 md:pt-[100px]">
+      <section className="relative min-h-[88svh] overflow-hidden bg-black pt-[66px] sm:min-h-[100svh] sm:pt-20 md:pt-[100px]">
         <Image
           src="/hero-background.png"
           alt="Black and gold luxury product hero"
@@ -32,15 +32,16 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.50)_0%,rgba(0,0,0,0.76)_38%,rgba(0,0,0,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.86)_31%,rgba(0,0,0,0.34)_66%,rgba(0,0,0,0.08)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_54%,rgba(215,181,109,0.17),transparent_12rem)] sm:bg-[radial-gradient(circle_at_8%_36%,rgba(215,181,109,0.16),transparent_18rem)]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-obsidian to-transparent" />
-        <div className="luxury-container relative z-10 flex min-h-[calc(92svh-56px)] items-center pb-8 pt-7 sm:min-h-[calc(100svh-80px)] sm:items-end sm:pb-12 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
+        <div className="luxury-container relative z-10 flex min-h-[calc(88svh-66px)] items-center pb-8 pt-7 sm:min-h-[calc(100svh-80px)] sm:items-end sm:pb-12 md:min-h-[calc(100vh-100px)] md:items-start md:pb-0 md:pt-24">
           <Reveal className="w-full max-w-[620px]">
             <div className="mx-auto flex w-fit items-center justify-center gap-2 text-[8px] font-semibold uppercase tracking-[0.22em] text-champagne min-[380px]:text-[9px] sm:mx-0 sm:justify-start sm:gap-4 sm:text-[11px] sm:tracking-[0.28em]">
               <span className="text-sm leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)] sm:text-lg">✦</span>
               Made to inspire confidence
             </div>
-            <h1 className="mx-auto mt-4 max-w-[11.8ch] text-center font-serif text-[2.15rem] uppercase leading-[0.9] tracking-[0.012em] text-ivory min-[380px]:text-[2.35rem] sm:mx-0 sm:mt-5 sm:max-w-[620px] sm:text-left sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
-              Designed to make <span className="sm:block">you feel</span>{" "}
-              <span className="gold-text sm:block">Extraordinary.</span>
+            <h1 className="mx-auto mt-4 max-w-[18rem] text-center font-serif text-[1.82rem] uppercase leading-[0.92] tracking-[0.018em] text-ivory min-[380px]:text-[2.02rem] sm:mx-0 sm:mt-5 sm:max-w-[620px] sm:text-left sm:text-5xl md:mt-7 md:text-6xl lg:text-[4rem] xl:text-[4.8rem]">
+              <span className="block">Designed to make</span>
+              <span className="block">you feel</span>
+              <span className="gold-text block">Extraordinary.</span>
             </h1>
             <p className="mx-auto mt-4 max-w-[30ch] text-center text-xs leading-6 text-ivory/78 min-[380px]:text-[13px] sm:mx-0 sm:max-w-[520px] sm:text-left sm:text-sm md:mt-6 md:text-base md:leading-7">
               Discover a refined collection created for confidence, comfort, and timeless expression.
@@ -57,7 +58,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="luxury-container relative py-14 sm:py-20 md:py-24">
+      <section className="luxury-container relative py-12 sm:py-20 md:py-24">
         <div className="absolute -right-20 top-8 h-48 w-48 rounded-full border border-champagne/10 sm:-right-28 sm:h-72 sm:w-72" />
         <SectionHeading
           eyebrow="Collections"

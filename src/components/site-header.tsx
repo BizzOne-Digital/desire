@@ -30,24 +30,20 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-champagne/35 bg-black/96 shadow-[0_14px_45px_rgba(0,0,0,0.42)] backdrop-blur-xl">
-      <div className="luxury-container relative flex h-14 items-center justify-end gap-2 sm:h-20 sm:justify-between sm:gap-5 md:h-[100px] lg:gap-8">
-        <Link
-          href="/"
-          className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center sm:static sm:translate-x-0 sm:translate-y-0"
-          aria-label={`${businessName} home`}
-        >
+      <div className="luxury-container flex h-[66px] items-center justify-between gap-3 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
+        <Link href="/" className="flex min-w-0 items-center" aria-label={`${businessName} home`}>
           {showLogo && logoUrl ? (
             <Image
               src={logoUrl}
               width={150}
               height={104}
               alt={`${businessName} logo`}
-              className="h-10 w-auto max-w-[84px] object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 sm:max-w-none md:h-[88px]"
+              className="h-14 w-auto max-w-[118px] object-contain drop-shadow-[0_0_24px_rgba(215,181,109,0.28)] sm:h-20 sm:max-w-none md:h-[88px]"
               priority
               onError={() => setShowLogo(false)}
             />
           ) : (
-            <span className="grid h-10 w-10 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-3xl sm:h-14 sm:w-14 sm:text-4xl md:h-20 md:w-20 md:text-5xl">
+            <span className="grid h-12 w-12 place-items-center rounded-full border border-champagne/50 gold-text font-serif text-3xl sm:h-14 sm:w-14 sm:text-4xl md:h-20 md:w-20 md:text-5xl">
               O
             </span>
           )}
@@ -115,8 +111,8 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
           )}
         </nav>
 
-        <div className="flex items-center justify-end gap-1 sm:min-w-[150px] sm:gap-4">
-          <Link href="/shop" aria-label="Search products" className="hidden rounded-full p-1.5 text-ivory/80 transition hover:bg-white/10 hover:text-champagne min-[360px]:inline-flex sm:p-2">
+        <div className="flex shrink-0 items-center justify-end gap-1 sm:min-w-[150px] sm:gap-4">
+          <Link href="/shop" aria-label="Search products" className="hidden rounded-full p-1.5 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex sm:p-2">
             <Search size={17} />
           </Link>
           <Link href="/admin/login" aria-label="Admin account" className="hidden rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex">
