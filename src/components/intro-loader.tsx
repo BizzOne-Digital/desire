@@ -56,17 +56,18 @@ export function IntroLoader({
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] grid place-items-center bg-black px-6"
+          className="fixed inset-0 z-[100] flex min-h-dvh items-center justify-center bg-black px-6 py-10"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
-          <div className="relative w-full max-w-sm text-center">
+          <div className="relative flex w-full max-w-sm flex-col items-center text-center">
+            <div className="absolute -inset-12 rounded-full bg-[radial-gradient(circle,rgba(215,181,109,0.14),transparent_64%)] blur-xl" />
             <motion.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="mx-auto mb-7 flex justify-center"
+              className="relative z-10 mx-auto mb-7 flex justify-center"
             >
               {showLogo && logoUrl ? (
                 <Image
@@ -74,7 +75,7 @@ export function IntroLoader({
                   alt={`${businessName} logo`}
                   width={150}
                   height={90}
-                  className="mx-auto h-20 w-auto object-contain sm:h-24"
+                  className="mx-auto h-24 w-auto object-contain sm:h-28"
                   onError={() => setShowLogo(false)}
                   priority
                 />
@@ -83,7 +84,7 @@ export function IntroLoader({
               )}
             </motion.div>
             <motion.div
-              className="mx-auto h-px w-full max-w-64 overflow-hidden bg-white/10"
+              className="relative z-10 mx-auto h-px w-full max-w-64 overflow-hidden bg-white/10"
               initial={{ width: 0 }}
               animate={{ width: 256 }}
               transition={{ duration: 0.7 }}
@@ -95,7 +96,7 @@ export function IntroLoader({
                 transition={{ duration: 0.2 }}
               />
             </motion.div>
-            <p className="mt-5 text-xs uppercase tracking-[0.4em] text-champagne">
+            <p className="relative z-10 mt-5 text-xs uppercase tracking-[0.4em] text-champagne">
               {Math.min(progress, 100)}%
             </p>
           </div>
