@@ -129,9 +129,9 @@ main {
   }
 
   .home-hero-title {
-    max-width: 22rem !important;
-    font-size: clamp(2.75rem, 13.5vw, 3.55rem) !important;
-    line-height: 0.82 !important;
+    max-width: min(20rem, calc(100vw - 2rem)) !important;
+    font-size: clamp(2.42rem, 11.7vw, 3.05rem) !important;
+    line-height: 0.86 !important;
     letter-spacing: 0.01em !important;
     text-wrap: balance;
   }
@@ -165,7 +165,7 @@ main {
   }
 
   .home-hero-title {
-    font-size: clamp(2.45rem, 12.5vw, 3.05rem) !important;
+    font-size: clamp(2.22rem, 11.3vw, 2.72rem) !important;
   }
 }
 
