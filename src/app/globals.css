@@ -15,11 +15,16 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 12% 8%, rgba(215, 181, 109, 0.16), transparent 31rem),
     radial-gradient(circle at 88% 2%, rgba(169, 120, 40, 0.16), transparent 32rem),
@@ -59,6 +64,12 @@ img {
   max-width: 100%;
 }
 
+main {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
 .luxury-container {
   width: min(1180px, calc(100vw - 2rem));
   margin-inline: auto;
@@ -66,7 +77,9 @@ img {
 
 @media (max-width: 480px) {
   .luxury-container {
-    width: min(1180px, calc(100vw - 1.25rem));
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0.75rem;
   }
 }
 
@@ -78,13 +91,30 @@ img {
 }
 
 @media (max-width: 640px) {
+  .site-header-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0.35rem !important;
+    padding-right: 0.65rem !important;
+  }
+
+  .site-header-inner img {
+    transform: translateX(-0.25rem);
+  }
+
   .home-hero {
     min-height: 760px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .home-hero-inner {
+    width: 100% !important;
+    max-width: 100% !important;
     min-height: 688px !important;
     align-items: center !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
     padding-top: 2.5rem !important;
     padding-bottom: 6.5rem !important;
   }

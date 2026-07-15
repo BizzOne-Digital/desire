@@ -30,7 +30,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-champagne/35 bg-black/96 shadow-[0_14px_45px_rgba(0,0,0,0.42)] backdrop-blur-xl">
-      <div className="luxury-container flex h-[72px] items-center justify-between gap-3 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
+      <div className="site-header-inner luxury-container flex h-[72px] items-center justify-between gap-3 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
         <Link href="/" className="flex min-w-0 items-center" aria-label={`${businessName} home`}>
           {showLogo && logoUrl ? (
             <Image

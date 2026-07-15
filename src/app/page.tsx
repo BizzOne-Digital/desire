@@ -59,7 +59,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="luxury-container relative py-16 sm:py-20 md:py-24">
+      <section className="luxury-container relative overflow-hidden py-16 sm:py-20 md:py-24">
         <div className="absolute -right-20 top-8 h-48 w-48 rounded-full border border-champagne/10 sm:-right-28 sm:h-72 sm:w-72" />
         <SectionHeading
           eyebrow="Collections"
