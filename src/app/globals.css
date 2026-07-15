@@ -77,6 +77,68 @@ img {
   color: transparent;
 }
 
+@media (max-width: 640px) {
+  .home-hero {
+    min-height: 760px !important;
+  }
+
+  .home-hero-inner {
+    min-height: 688px !important;
+    align-items: center !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 6.5rem !important;
+  }
+
+  .home-hero-copy {
+    transform: translateY(-0.25rem);
+  }
+
+  .home-hero-kicker {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.25em !important;
+  }
+
+  .home-hero-title {
+    max-width: 22rem !important;
+    font-size: clamp(2.75rem, 13.5vw, 3.55rem) !important;
+    line-height: 0.82 !important;
+    letter-spacing: 0.01em !important;
+    text-wrap: balance;
+  }
+
+  .home-hero-text {
+    max-width: 20rem !important;
+    font-size: 0.9rem !important;
+    line-height: 1.75 !important;
+  }
+
+  .home-hero-actions {
+    max-width: 20rem !important;
+    margin-top: 1.75rem !important;
+  }
+
+  .home-hero-button {
+    min-height: 3.25rem;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.22em !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-hero {
+    min-height: 720px !important;
+  }
+
+  .home-hero-inner {
+    min-height: 648px !important;
+    padding-bottom: 5.5rem !important;
+  }
+
+  .home-hero-title {
+    font-size: clamp(2.45rem, 12.5vw, 3.05rem) !important;
+  }
+}
+
 .glass-panel {
   border: 1px solid rgba(215, 181, 109, 0.16);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
