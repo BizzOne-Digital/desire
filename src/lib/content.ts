@@ -54,7 +54,7 @@ export const siteConfig = {
   editableBusinessName: "ONLY COLLECTION",
   fallbackBusinessName: "Velorian Collection",
   phone: "(514) 709-8704",
-  email: "stewarddesire2@gmail.com",
+  email: "onlycollection21@gmail.com",
   currency: "CAD",
   logoUrl: "/logo.png",
   currentWebsite: "veloriancollection.myshopify.com",

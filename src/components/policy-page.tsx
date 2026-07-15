@@ -29,7 +29,7 @@ export function PolicyPage({
               The client should review all legal copy with appropriate counsel before launch.
             </p>
             <p>
-              Contact ONLY COLLECTION at stewarddesire2@gmail.com or (514) 709-8704 for questions
+              Contact ONLY COLLECTION at onlycollection21@gmail.com or (514) 709-8704 for questions
               about orders, shipping, privacy, or support.
             </p>
           </div>
