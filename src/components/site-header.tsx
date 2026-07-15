@@ -125,6 +125,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
             </span>
           </Link>
           <button
+            type="button"
             className="rounded-full border border-champagne/15 bg-white/[0.03] p-2 text-ivory sm:border-0 sm:bg-transparent lg:hidden"
             aria-label="Open menu"
             onClick={() => setOpen(true)}
@@ -137,18 +138,20 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md lg:hidden"
+            className="fixed inset-0 z-[120] bg-black/75 backdrop-blur-md lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
           >
             <motion.nav
-              className="absolute right-0 top-0 h-full w-[88vw] max-w-sm overflow-y-auto border-l border-champagne/20 bg-noir p-5 shadow-soft sm:p-7"
+              className="fixed right-0 top-0 z-[130] h-dvh w-[88vw] max-w-sm overflow-y-auto border-l border-champagne/20 bg-noir p-5 shadow-soft sm:p-7"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 230, damping: 28 }}
               aria-label="Mobile navigation"
+              onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-8 flex items-center justify-between sm:mb-10">
                 {showLogo && logoUrl ? (
@@ -164,7 +167,7 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
                     O
                   </span>
                 )}
-                <button aria-label="Close menu" onClick={() => setOpen(false)}>
+                <button type="button" aria-label="Close menu" onClick={() => setOpen(false)}>
                   <X />
                 </button>
               </div>

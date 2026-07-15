@@ -129,11 +129,18 @@ main {
   }
 
   .home-hero-title {
-    max-width: min(20rem, calc(100vw - 2rem)) !important;
-    font-size: clamp(2.42rem, 11.7vw, 3.05rem) !important;
+    max-width: min(19.25rem, calc(100vw - 2rem)) !important;
+    font-size: clamp(2.34rem, 11.2vw, 2.92rem) !important;
     line-height: 0.86 !important;
     letter-spacing: 0.01em !important;
     text-wrap: balance;
+  }
+
+  .home-hero-title .gold-text {
+    display: inline-block;
+    font-size: 0.82em;
+    letter-spacing: -0.015em;
+    padding-inline: 0.08em;
   }
 
   .home-hero-text {
@@ -165,7 +172,7 @@ main {
   }
 
   .home-hero-title {
-    font-size: clamp(2.22rem, 11.3vw, 2.72rem) !important;
+    font-size: clamp(2.1rem, 10.6vw, 2.55rem) !important;
   }
 }
 
