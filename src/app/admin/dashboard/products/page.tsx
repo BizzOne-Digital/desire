@@ -1,14 +1,5 @@
-import { AdminProductManager } from "@/components/admin-product-manager";
-import { AdminShell } from "@/components/admin-shell";
-import { hasDatabase } from "@/lib/db";
-import { getProducts } from "@/lib/store";
+import { redirect } from "next/navigation";
 
-export default async function AdminProductsPage() {
-  const products = await getProducts();
-
-  return (
-    <AdminShell title="Product Management">
-      <AdminProductManager initialProducts={products} databaseEnabled={hasDatabase} />
-    </AdminShell>
-  );
+export default function AdminProductsPage() {
+  redirect("/admin/dashboard/categories");
 }

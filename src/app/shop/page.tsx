@@ -1,34 +1,49 @@
 import type { Metadata } from "next";
-import { ShopClient } from "@/components/shop-client";
+import Link from "next/link";
+import { CatalogGrid } from "@/components/catalog-grid";
 import { EditorialImageStrip, PageHero } from "@/components/sections";
+import { getCatalogs } from "@/lib/catalog-store";
 import { getImageSet } from "@/lib/utils";
-import { getCategories, getProducts } from "@/lib/store";
 
 export const metadata: Metadata = {
-  title: "Shop",
-  description: "Browse ONLY COLLECTION products with search, sorting, category filters, tags, and stock filters."
+  title: "Shop Catalogs",
+  description:
+    "Browse external supplier catalogs and submit a product inquiry for pricing and availability.",
 };
 
-export default async function ShopPage({
-  searchParams
-}: {
-  searchParams: Promise<{ category?: string }>;
-}) {
-  const [products, categories] = await Promise.all([getProducts(), getCategories()]);
-  const { category } = await searchParams;
-  const selectedCategory =
-    categories.find((item) => item.slug === category)?.name ?? "all";
+export default async function ShopPage() {
+  const catalogs = await getCatalogs();
 
   return (
     <>
       <PageHero
-        eyebrow="Shop"
-        title="A refined collection for everyday presence."
-        text="Browse fragrance, accessories, gifts, and rituals selected for confidence, comfort, and high-end expression."
+        eyebrow="Shop Catalogs"
+        title="Browse Our Catalogs"
+        text="Explore our curated collections. Open a catalog, choose the product you are interested in, and send us the product link or code for pricing and availability."
         image="/pages/shop-hero.png"
+        cta={{ label: "Submit Product Inquiry", href: "/product-inquiry" }}
       />
-      <ShopClient products={products} categories={categories} initialCategory={selectedCategory} />
-      <EditorialImageStrip images={getImageSet("shop")} title="Shop Editorial Set" />
+      <CatalogGrid items={catalogs} />
+      <section className="luxury-container pb-16">
+        <div className="rounded-[2rem] border border-champagne/15 bg-black/45 p-6 text-sm leading-7 text-ivory/68">
+          <p>
+            Catalog products, prices, sizes, colors, and availability are
+            subject to confirmation. External catalogs are operated by
+            third-party suppliers. ONLY COLLECTION does not claim ownership of
+            these external catalogs.
+          </p>
+          <Link
+            href="/how-to-order"
+            className="mt-4 inline-flex text-champagne underline-offset-4 hover:underline"
+          >
+            Learn how the inquiry process works
+          </Link>
+        </div>
+      </section>
+      <EditorialImageStrip
+        images={getImageSet("shop")}
+        title="Catalog Inspiration"
+      />
     </>
   );
 }

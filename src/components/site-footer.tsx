@@ -4,25 +4,21 @@ import { NewsletterForm } from "@/components/forms";
 import { siteConfig } from "@/lib/content";
 
 const links = [
-  ["Shop", "/shop"],
-  ["Services", "/services"],
-  ["Pricing", "/pricing"],
-  ["Gallery", "/gallery"],
-  ["About", "/about"],
-  ["Contact", "/contact"]
+  ["Shop Catalogs", "/shop"],
+  ["How to Order", "/how-to-order"],
+  ["Product Inquiry", "/product-inquiry"],
+  ["Contact", "/contact"],
 ];
 
 const support = [
   ["Privacy Policy", "/privacy-policy"],
   ["Terms and Conditions", "/terms-and-conditions"],
   ["Shipping and Returns", "/shipping-and-returns"],
-  ["Cart", "/cart"],
-  ["Checkout", "/checkout"]
 ];
 
 export function SiteFooter({
   businessName = siteConfig.businessName,
-  logoUrl = siteConfig.logoUrl
+  logoUrl = siteConfig.logoUrl,
 }: {
   businessName?: string;
   logoUrl?: string;
@@ -41,17 +37,29 @@ export function SiteFooter({
             className="h-24 w-auto object-contain drop-shadow-[0_0_38px_rgba(215,181,109,0.28)] sm:h-32 md:h-40"
           />
           <p className="mt-4 max-w-sm text-sm leading-7 text-ivory/70 sm:mt-5">
-            Thoughtfully selected products, premium presentation, and an elevated shopping
-            experience designed to help every customer feel good.
+            Browse curated fashion catalogs, send your item reference, and
+            receive confirmation for pricing, availability, and delivery before
+            ordering.
+          </p>
+          <p className="mt-4 max-w-sm text-xs leading-6 text-ivory/48">
+            Catalog products, prices, sizes, colors, and availability are
+            subject to confirmation. External catalogs are operated by
+            third-party suppliers.
           </p>
           <div className="mt-7 h-px w-28 bg-gold-gradient" />
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">Explore</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">
+            Explore
+          </h2>
           <div className="mt-5 grid gap-3">
             {links.map(([label, href]) => (
-              <Link key={href} href={href} className="text-sm text-ivory/68 transition hover:text-champagne">
+              <Link
+                key={href}
+                href={href}
+                className="text-sm text-ivory/68 transition hover:text-champagne"
+              >
                 {label}
               </Link>
             ))}
@@ -59,10 +67,16 @@ export function SiteFooter({
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">Support</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">
+            Support
+          </h2>
           <div className="mt-5 grid gap-3">
             {support.map(([label, href]) => (
-              <Link key={href} href={href} className="text-sm text-ivory/68 transition hover:text-champagne">
+              <Link
+                key={href}
+                href={href}
+                className="text-sm text-ivory/68 transition hover:text-champagne"
+              >
                 {label}
               </Link>
             ))}
@@ -70,9 +84,12 @@ export function SiteFooter({
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">Stay Close</h2>
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.25em] text-champagne sm:text-xs sm:tracking-[0.28em]">
+            Stay Close
+          </h2>
           <p className="mt-5 text-sm leading-7 text-ivory/70">
-            Receive refined product updates, thoughtful gift ideas, and collection notes.
+            Receive catalog updates, sourcing notes, and availability
+            announcements.
           </p>
           <div className="mt-5">
             <NewsletterForm compact />
@@ -86,7 +103,7 @@ export function SiteFooter({
       <div className="border-t border-white/10 py-6">
         <div className="luxury-container flex flex-col gap-3 text-xs text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} All rights reserved.</p>
-          <p>Luxury commerce website built for Desire.</p>
+          <p>Catalog inquiry service for ONLY COLLECTION.</p>
         </div>
       </div>
     </footer>

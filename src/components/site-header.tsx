@@ -3,35 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
+import { Menu, MessageSquare, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCart } from "@/components/cart-provider";
-import { categories as shopCategories } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   ["Home", "/"],
-  ["Shop", "/shop"],
-  ["Services", "/services"],
-  ["Pricing", "/pricing"],
-  ["Gallery", "/gallery"],
+  ["Shop Catalogs", "/shop"],
+  ["How to Order", "/how-to-order"],
   ["About", "/about"],
-  ["Contact", "/contact"]
+  ["Contact", "/contact"],
 ];
 
-export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; businessName: string }) {
+export function SiteHeader({
+  logoUrl,
+  businessName,
+}: {
+  logoUrl: string;
+  businessName: string;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [showLogo, setShowLogo] = useState(true);
-  const { count } = useCart();
 
   useEffect(() => setOpen(false), [pathname]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-champagne/35 bg-black/96 shadow-[0_14px_45px_rgba(0,0,0,0.42)] backdrop-blur-xl">
       <div className="site-header-inner luxury-container flex h-[72px] items-center justify-between gap-3 sm:h-20 sm:gap-5 md:h-[100px] lg:gap-8">
-        <Link href="/" className="flex min-w-0 items-center" aria-label={`${businessName} home`}>
+        <Link
+          href="/"
+          className="flex min-w-0 items-center"
+          aria-label={`${businessName} home`}
+        >
           {showLogo && logoUrl ? (
             <Image
               src={logoUrl}
@@ -49,80 +54,44 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
           )}
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-center gap-9 lg:flex" aria-label="Main navigation">
-          {navItems.map(([label, href]) =>
-            label === "Shop" ? (
-              <div key={href} className="group relative py-9">
-                <Link
-                  href={href}
-                  className={cn(
-                    "relative inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-ivory/78 transition hover:text-champagne",
-                    pathname === href && "text-champagne"
-                  )}
-                >
-                  {label}
-                  <ChevronDown size={12} className="transition duration-300 group-hover:rotate-180" />
-                  <span className={cn("absolute -bottom-4 left-0 h-[2px] bg-gold-gradient transition-all duration-300 group-hover:w-full", pathname === href ? "w-full" : "w-0")} />
-                </Link>
-                <div className="pointer-events-none absolute left-1/2 top-full w-[430px] -translate-x-1/2 translate-y-4 opacity-0 transition duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="overflow-hidden rounded-b-[1.8rem] border border-champagne/20 bg-black/95 p-3 shadow-[0_28px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl">
-                    <div className="border-b border-champagne/15 px-4 py-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-champagne">
-                        Shop Categories
-                      </p>
-                    </div>
-                    <div className="grid gap-1 p-2">
-                      {shopCategories.map((category) => (
-                        <Link
-                          key={category.slug}
-                          href={`/shop?category=${category.slug}`}
-                          className="group/item rounded-2xl border border-transparent px-4 py-3 transition hover:border-champagne/25 hover:bg-champagne/10"
-                        >
-                          <span className="flex items-center justify-between gap-4">
-                            <span>
-                              <span className="block font-serif text-xl text-ivory transition group-hover/item:text-champagne">
-                                {category.name}
-                              </span>
-                              <span className="mt-1 block text-xs leading-5 text-ivory/55">
-                                {category.description}
-                              </span>
-                            </span>
-                            <ArrowRightIcon />
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={href}
-                href={href}
+        <nav
+          className="hidden flex-1 items-center justify-center gap-9 lg:flex"
+          aria-label="Main navigation"
+        >
+          {navItems.map(([label, href]) => (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                "group relative inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-ivory/78 transition hover:text-champagne",
+                pathname === href && "text-champagne",
+              )}
+            >
+              {label}
+              <span
                 className={cn(
-                  "group relative inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-ivory/78 transition hover:text-champagne",
-                  pathname === href && "text-champagne"
+                  "absolute -bottom-4 left-0 h-[2px] bg-gold-gradient transition-all duration-300 group-hover:w-full",
+                  pathname === href ? "w-full" : "w-0",
                 )}
-              >
-                {label}
-                <span className={cn("absolute -bottom-4 left-0 h-[2px] bg-gold-gradient transition-all duration-300 group-hover:w-full", pathname === href ? "w-full" : "w-0")} />
-              </Link>
-            )
-          )}
+              />
+            </Link>
+          ))}
         </nav>
 
         <div className="flex shrink-0 items-center justify-end gap-1 sm:min-w-[150px] sm:gap-4">
-          <Link href="/shop" aria-label="Search products" className="hidden rounded-full p-1.5 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex sm:p-2">
-            <Search size={17} />
+          <Link
+            href="/product-inquiry"
+            aria-label="Submit product inquiry"
+            className="hidden rounded-full bg-gold-gradient px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black transition hover:-translate-y-0.5 sm:inline-flex"
+          >
+            Submit Inquiry
           </Link>
-          <Link href="/admin/login" aria-label="Admin account" className="hidden rounded-full p-2 text-ivory/80 transition hover:bg-white/10 hover:text-champagne sm:inline-flex">
-            <UserRound size={19} />
-          </Link>
-          <Link href="/cart" aria-label="Cart" className="relative rounded-full border border-champagne/15 bg-white/[0.03] p-2 text-ivory/85 transition hover:bg-white/10 hover:text-champagne sm:border-0 sm:bg-transparent">
-            <ShoppingBag size={20} />
-            <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-champagne px-1 text-[9px] font-bold text-black sm:h-5 sm:min-w-5 sm:text-[10px]">
-              {count}
-            </span>
+          <Link
+            href="/product-inquiry"
+            aria-label="Submit product inquiry"
+            className="rounded-full border border-champagne/15 bg-white/[0.03] p-2 text-ivory/85 transition hover:bg-white/10 hover:text-champagne sm:hidden"
+          >
+            <MessageSquare size={20} />
           </Link>
           <button
             type="button"
@@ -167,47 +136,39 @@ export function SiteHeader({ logoUrl, businessName }: { logoUrl: string; busines
                     O
                   </span>
                 )}
-                <button type="button" aria-label="Close menu" onClick={() => setOpen(false)}>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  onClick={() => setOpen(false)}
+                >
                   <X />
                 </button>
               </div>
               <div className="grid gap-4 sm:gap-5">
                 {navItems.map(([label, href]) => (
-                  <div key={href} className="border-b border-white/10 pb-3 sm:pb-4">
+                  <div
+                    key={href}
+                    className="border-b border-white/10 pb-3 sm:pb-4"
+                  >
                     <Link
                       href={href}
                       className="font-serif text-2xl text-ivory transition hover:text-champagne sm:text-3xl"
                     >
                       {label}
                     </Link>
-                    {label === "Shop" && (
-                      <div className="mt-4 grid gap-3 pl-3">
-                        {shopCategories.map((category) => (
-                          <Link
-                            key={category.slug}
-                            href={`/shop?category=${category.slug}`}
-                            className="text-sm uppercase tracking-[0.2em] text-champagne/75"
-                          >
-                            {category.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 ))}
+                <Link
+                  href="/product-inquiry"
+                  className="rounded-full bg-gold-gradient px-6 py-3 text-center text-xs font-bold uppercase tracking-[0.22em] text-black"
+                >
+                  Submit Inquiry
+                </Link>
               </div>
             </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-champagne/25 text-champagne transition group-hover/item:border-champagne group-hover/item:bg-champagne group-hover/item:text-black">
-      →
-    </span>
   );
 }

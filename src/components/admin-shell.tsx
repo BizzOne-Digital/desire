@@ -3,21 +3,30 @@ import { AdminLogoutButton } from "@/components/admin-logout-button";
 
 const adminLinks = [
   ["Overview", "/admin/dashboard"],
-  ["Products", "/admin/dashboard/products"],
   ["Categories", "/admin/dashboard/categories"],
   ["Orders", "/admin/dashboard/orders"],
   ["Content", "/admin/dashboard/content"],
   ["Media", "/admin/dashboard/media"],
-  ["Settings", "/admin/dashboard/settings"]
+  ["Settings", "/admin/dashboard/settings"],
 ];
 
-export function AdminShell({ title, children }: { title: string; children: React.ReactNode }) {
+export function AdminShell({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className="luxury-container py-32">
       <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-champagne">Admin Dashboard</p>
-          <h1 className="mt-3 font-serif text-5xl text-ivory md:text-7xl">{title}</h1>
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-champagne">
+            Admin Dashboard
+          </p>
+          <h1 className="mt-3 font-serif text-5xl text-ivory md:text-7xl">
+            {title}
+          </h1>
         </div>
         <AdminLogoutButton />
       </div>

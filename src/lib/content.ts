@@ -49,6 +49,12 @@ export type GalleryItem = {
   category: string;
 };
 
+export type Testimonial = {
+  name: string;
+  rating: number;
+  review: string;
+};
+
 export const siteConfig = {
   businessName: "ONLY COLLECTION",
   editableBusinessName: "ONLY COLLECTION",
@@ -59,15 +65,15 @@ export const siteConfig = {
   logoUrl: "/logo.png",
   currentWebsite: "veloriancollection.myshopify.com",
   description:
-    "A premium commerce experience for thoughtfully selected products that help people feel confident, comfortable, and extraordinary.",
+    "A premium catalog inquiry service for customers browsing external fashion supplier catalogs.",
   address: "",
   businessHours: "",
   socialLinks: {
     instagram: "",
     facebook: "",
     tiktok: "",
-    pinterest: ""
-  }
+    pinterest: "",
+  },
 };
 
 export const editorialImages = [
@@ -75,7 +81,7 @@ export const editorialImages = [
   "/gallery/gallery-2.png",
   "/gallery/gallery-3.png",
   "/gallery/gallery-4.png",
-  "/gallery/gallery-5.png"
+  "/gallery/gallery-5.png",
 ];
 
 const productImageSets = {
@@ -84,57 +90,57 @@ const productImageSets = {
     "/products/auric-veil-2.png",
     "/products/auric-veil-3.png",
     "/products/auric-veil-4.png",
-    "/products/auric-veil-5.png"
+    "/products/auric-veil-5.png",
   ],
   gildedHour: [
     "/products/gilded-hour-1.png",
     "/products/gilded-hour-2.png",
     "/products/gilded-hour-3.png",
     "/products/gilded-hour-4.png",
-    "/products/gilded-hour-5.png"
+    "/products/gilded-hour-5.png",
   ],
   noirSilk: [
     "/products/noir-silk-1.png",
     "/products/noir-silk-2.png",
     "/products/noir-silk-3.png",
     "/products/noir-silk-4.png",
-    "/products/noir-silk-5.png"
+    "/products/noir-silk-5.png",
   ],
   ivoryRitual: [
     "/products/ivory-ritual-1.png",
     "/products/ivory-ritual-2.png",
     "/products/ivory-ritual-3.png",
     "/products/ivory-ritual-4.png",
-    "/products/ivory-ritual-5.png"
+    "/products/ivory-ritual-5.png",
   ],
   champagneDrape: [
     "/products/champagne-drape-1.png",
     "/products/champagne-drape-2.png",
     "/products/champagne-drape-3.png",
     "/products/champagne-drape-4.png",
-    "/products/champagne-drape-5.png"
+    "/products/champagne-drape-5.png",
   ],
   velvetKeepsake: [
     "/products/velvet-keepsake-1.png",
     "/products/velvet-keepsake-2.png",
     "/products/velvet-keepsake-3.png",
     "/products/velvet-keepsake-4.png",
-    "/products/velvet-keepsake-5.png"
+    "/products/velvet-keepsake-5.png",
   ],
   goldenMist: [
     "/products/golden-mist-1.png",
     "/products/golden-mist-2.png",
     "/products/golden-mist-3.png",
     "/products/golden-mist-4.png",
-    "/products/golden-mist-5.png"
+    "/products/golden-mist-5.png",
   ],
   midnightGiftSet: [
     "/products/midnight-gift-set-1.png",
     "/products/midnight-gift-set-2.png",
     "/products/midnight-gift-set-3.png",
     "/products/midnight-gift-set-4.png",
-    "/products/midnight-gift-set-5.png"
-  ]
+    "/products/midnight-gift-set-5.png",
+  ],
 };
 
 export const categories: Category[] = [
@@ -143,22 +149,22 @@ export const categories: Category[] = [
     name: "Signature Fragrance",
     slug: "signature-fragrance",
     description: "Warm, polished scent profiles made for lasting presence.",
-    imageUrl: "/categories/signature-fragrance.png"
+    imageUrl: "/categories/signature-fragrance.png",
   },
   {
     id: "cat-accessories",
     name: "Elevated Accessories",
     slug: "elevated-accessories",
     description: "Finishing touches with a quiet, high-end confidence.",
-    imageUrl: "/categories/elevated-accessories.png"
+    imageUrl: "/categories/elevated-accessories.png",
   },
   {
     id: "cat-care",
     name: "Body & Ritual",
     slug: "body-and-ritual",
     description: "Daily essentials designed to feel personal and indulgent.",
-    imageUrl: "/categories/body-and-ritual.png"
-  }
+    imageUrl: "/categories/body-and-ritual.png",
+  },
 ];
 
 export const products: Product[] = [
@@ -179,13 +185,22 @@ export const products: Product[] = [
     popularity: 98,
     images: productImageSets.auricVeil,
     variants: [
-      { name: "Size", values: ["30ml", "50ml", "100ml"], required: true }
+      { name: "Size", values: ["30ml", "50ml", "100ml"], required: true },
     ],
     details: [
-      { title: "Scent Notes", body: "Neroli, warm amber, vanilla woods, brushed musk." },
-      { title: "Shipping", body: "Ships in 2-4 business days with premium protective packaging." },
-      { title: "Returns", body: "Unopened products may be returned within 14 days of delivery." }
-    ]
+      {
+        title: "Scent Notes",
+        body: "Neroli, warm amber, vanilla woods, brushed musk.",
+      },
+      {
+        title: "Shipping",
+        body: "Ships in 2-4 business days with premium protective packaging.",
+      },
+      {
+        title: "Returns",
+        body: "Unopened products may be returned within 14 days of delivery.",
+      },
+    ],
   },
   {
     id: "prod-gilded-hour",
@@ -203,13 +218,26 @@ export const products: Product[] = [
     popularity: 91,
     images: productImageSets.gildedHour,
     variants: [
-      { name: "Finish", values: ["Polished Gold", "Soft Champagne"], required: true }
+      {
+        name: "Finish",
+        values: ["Polished Gold", "Soft Champagne"],
+        required: true,
+      },
     ],
     details: [
-      { title: "Material", body: "Gold-tone plated stainless steel with a high-polish finish." },
-      { title: "Care", body: "Store dry, avoid perfume contact, and wipe gently after wear." },
-      { title: "Packaging", body: "Arrives in a reusable black gift box with gold detailing." }
-    ]
+      {
+        title: "Material",
+        body: "Gold-tone plated stainless steel with a high-polish finish.",
+      },
+      {
+        title: "Care",
+        body: "Store dry, avoid perfume contact, and wipe gently after wear.",
+      },
+      {
+        title: "Packaging",
+        body: "Arrives in a reusable black gift box with gold detailing.",
+      },
+    ],
   },
   {
     id: "prod-noir-silk",
@@ -226,14 +254,21 @@ export const products: Product[] = [
     isNew: true,
     popularity: 83,
     images: productImageSets.noirSilk,
-    variants: [
-      { name: "Size", values: ["100ml", "200ml"], required: true }
-    ],
+    variants: [{ name: "Size", values: ["100ml", "200ml"], required: true }],
     details: [
-      { title: "Texture", body: "Fast absorbing, non-greasy, and softly luminous." },
-      { title: "Ritual", body: "Apply after showering while skin is still slightly damp." },
-      { title: "Ingredients", body: "A demo formulation placeholder editable from admin." }
-    ]
+      {
+        title: "Texture",
+        body: "Fast absorbing, non-greasy, and softly luminous.",
+      },
+      {
+        title: "Ritual",
+        body: "Apply after showering while skin is still slightly damp.",
+      },
+      {
+        title: "Ingredients",
+        body: "A demo formulation placeholder editable from admin.",
+      },
+    ],
   },
   {
     id: "prod-ivory-ritual",
@@ -250,13 +285,26 @@ export const products: Product[] = [
     popularity: 77,
     images: productImageSets.ivoryRitual,
     variants: [
-      { name: "Scent", values: ["Sandalwood Fig", "Amber Rose"], required: true }
+      {
+        name: "Scent",
+        values: ["Sandalwood Fig", "Amber Rose"],
+        required: true,
+      },
     ],
     details: [
-      { title: "Burn Time", body: "Approximately 45 hours with a properly trimmed wick." },
-      { title: "Vessel", body: "Reusable glass vessel with a minimal black and gold label." },
-      { title: "Gift Ready", body: "Designed for thoughtful gifting and elevated self-care." }
-    ]
+      {
+        title: "Burn Time",
+        body: "Approximately 45 hours with a properly trimmed wick.",
+      },
+      {
+        title: "Vessel",
+        body: "Reusable glass vessel with a minimal black and gold label.",
+      },
+      {
+        title: "Gift Ready",
+        body: "Designed for thoughtful gifting and elevated self-care.",
+      },
+    ],
   },
   {
     id: "prod-champagne-scarf",
@@ -273,13 +321,26 @@ export const products: Product[] = [
     popularity: 72,
     images: productImageSets.champagneDrape,
     variants: [
-      { name: "Color", values: ["Champagne", "Obsidian", "Ivory"], required: true }
+      {
+        name: "Color",
+        values: ["Champagne", "Obsidian", "Ivory"],
+        required: true,
+      },
     ],
     details: [
-      { title: "Feel", body: "Smooth, lightweight drape with a luminous finish." },
-      { title: "Styling", body: "Wear around the neck, hair, handbag, or shoulders." },
-      { title: "Care", body: "Hand wash cold or dry clean for the longest life." }
-    ]
+      {
+        title: "Feel",
+        body: "Smooth, lightweight drape with a luminous finish.",
+      },
+      {
+        title: "Styling",
+        body: "Wear around the neck, hair, handbag, or shoulders.",
+      },
+      {
+        title: "Care",
+        body: "Hand wash cold or dry clean for the longest life.",
+      },
+    ],
   },
   {
     id: "prod-velvet-pouch",
@@ -297,13 +358,22 @@ export const products: Product[] = [
     popularity: 63,
     images: productImageSets.velvetKeepsake,
     variants: [
-      { name: "Color", values: ["Black", "Champagne"], required: true }
+      { name: "Color", values: ["Black", "Champagne"], required: true },
     ],
     details: [
-      { title: "Use", body: "Ideal for travel, gifting, and storing small pieces." },
-      { title: "Finish", body: "Soft velvet exterior with a subtle gold drawstring." },
-      { title: "Availability", body: "Seasonal colors can be added from admin variants." }
-    ]
+      {
+        title: "Use",
+        body: "Ideal for travel, gifting, and storing small pieces.",
+      },
+      {
+        title: "Finish",
+        body: "Soft velvet exterior with a subtle gold drawstring.",
+      },
+      {
+        title: "Availability",
+        body: "Seasonal colors can be added from admin variants.",
+      },
+    ],
   },
   {
     id: "prod-golden-mist",
@@ -320,14 +390,15 @@ export const products: Product[] = [
     isNew: true,
     popularity: 69,
     images: productImageSets.goldenMist,
-    variants: [
-      { name: "Size", values: ["50ml"], required: true }
-    ],
+    variants: [{ name: "Size", values: ["50ml"], required: true }],
     details: [
-      { title: "Scent", body: "Rose water, vanilla silk, and a soft suede drydown." },
+      {
+        title: "Scent",
+        body: "Rose water, vanilla silk, and a soft suede drydown.",
+      },
       { title: "How To Use", body: "Mist lightly from mid-length to ends." },
-      { title: "Note", body: "Avoid eyes and freshly heat-styled hair." }
-    ]
+      { title: "Note", body: "Avoid eyes and freshly heat-styled hair." },
+    ],
   },
   {
     id: "prod-midnight-set",
@@ -345,49 +416,75 @@ export const products: Product[] = [
     popularity: 95,
     images: productImageSets.midnightGiftSet,
     variants: [
-      { name: "Gift Wrap", values: ["Classic Black", "Ivory Ribbon"], required: true }
+      {
+        name: "Gift Wrap",
+        values: ["Classic Black", "Ivory Ribbon"],
+        required: true,
+      },
     ],
     details: [
-      { title: "Included", body: "A curated demo bundle, editable from product management." },
-      { title: "Presentation", body: "Premium box, tissue, ribbon, and message card." },
-      { title: "Shipping", body: "Gift sets ship boxed and protected." }
-    ]
-  }
+      {
+        title: "Included",
+        body: "A curated demo bundle, editable from product management.",
+      },
+      {
+        title: "Presentation",
+        body: "Premium box, tissue, ribbon, and message card.",
+      },
+      { title: "Shipping", body: "Gift sets ship boxed and protected." },
+    ],
+  },
 ];
 
 export const services: Service[] = [
   {
-    title: "Personal Product Selection",
-    slug: "personal-product-selection",
+    title: "Catalog Browsing Support",
+    slug: "catalog-browsing-support",
     description:
-      "A guided recommendation experience for customers choosing gifts, scents, or signature pieces.",
+      "Guidance for customers comparing supplier catalog links, albums, and product references.",
     imageUrl: "/services/services-1.png",
-    features: ["Personal preference review", "Curated shortlist", "Gift-ready suggestions"]
+    features: [
+      "Catalog navigation help",
+      "Product reference checks",
+      "Inquiry preparation",
+    ],
   },
   {
-    title: "Gift Consultation",
-    slug: "gift-consultation",
+    title: "Product Inquiry Review",
+    slug: "product-inquiry-review",
     description:
-      "Warm, thoughtful guidance for birthdays, thank-yous, bridal moments, and premium gestures.",
+      "Support for organizing product links, codes, sizes, colors, quantities, and delivery details.",
     imageUrl: "/services/services-2.png",
-    features: ["Occasion planning", "Budget-aware picks", "Custom note support"]
+    features: [
+      "Link or code review",
+      "Size and color notes",
+      "Country-specific details",
+    ],
   },
   {
-    title: "Premium Packaging",
-    slug: "premium-packaging",
+    title: "Availability Confirmation",
+    slug: "availability-confirmation",
     description:
-      "A refined unboxing experience with layered textures, protective wrapping, and gold details.",
+      "Confirmation-focused support before a customer commits to an order or payment.",
     imageUrl: "/services/services-3.png",
-    features: ["Luxury gift box", "Ribbon and tissue", "Optional message card"]
+    features: [
+      "Price confirmation",
+      "Availability check",
+      "Delivery time estimate",
+    ],
   },
   {
-    title: "Custom Orders",
-    slug: "custom-orders",
+    title: "Sourcing Requests",
+    slug: "sourcing-requests",
     description:
-      "Special requests for bundles, quantities, and curated product combinations.",
+      "Help with multi-item requests and catalog references across fashion categories.",
     imageUrl: "/services/services-4.png",
-    features: ["Bundle planning", "Special quantity requests", "Direct client support"]
-  }
+    features: [
+      "Multiple item inquiries",
+      "Category guidance",
+      "Direct customer support",
+    ],
+  },
 ];
 
 export const pricingPlans: PricingPlan[] = [
@@ -395,94 +492,87 @@ export const pricingPlans: PricingPlan[] = [
     name: "Gift Styling",
     price: "From $45",
     description: "For customers who want a polished, guided gift experience.",
-    features: ["Product shortlist", "Packaging recommendation", "Personal note guidance"]
+    features: [
+      "Product shortlist",
+      "Packaging recommendation",
+      "Personal note guidance",
+    ],
   },
   {
     name: "Premium Bundle",
     price: "From $125",
-    description: "A curated product bundle built around scent, style, or self-care.",
+    description:
+      "A curated product bundle built around scent, style, or self-care.",
     highlighted: true,
-    features: ["Three to five products", "Premium packaging", "Editable recipient profile"]
+    features: [
+      "Three to five products",
+      "Premium packaging",
+      "Editable recipient profile",
+    ],
   },
   {
     name: "Custom Consultation",
     price: "Custom",
-    description: "For larger orders, special events, and highly personalized requests.",
-    features: ["Direct consultation", "Custom sourcing structure", "Flexible fulfilment plan"]
-  }
+    description:
+      "For larger orders, special events, and highly personalized requests.",
+    features: [
+      "Direct consultation",
+      "Custom sourcing structure",
+      "Flexible fulfilment plan",
+    ],
+  },
 ];
 
 export const galleryItems: GalleryItem[] = [
   {
     title: "Amber Editorial",
-    description: "A warm still life focused on texture, shine, and evening glow.",
+    description:
+      "A warm still life focused on texture, shine, and evening glow.",
     category: "Editorial",
-    imageUrl: "/gallery/gallery-1.png"
+    imageUrl: "/gallery/gallery-1.png",
   },
   {
-    title: "Gift Moment",
-    description: "Premium wrapping designed to feel considered before it is opened.",
-    category: "Packaging",
-    imageUrl: "/gallery/gallery-2.png"
+    title: "Catalog Mood",
+    description: "A refined visual reference for browsing fashion categories.",
+    category: "Editorial",
+    imageUrl: "/gallery/gallery-2.png",
   },
   {
     title: "Quiet Detail",
-    description: "Subtle accessories that add confidence without overwhelming the look.",
+    description:
+      "Subtle accessories that add confidence without overwhelming the look.",
     category: "Accessories",
-    imageUrl: "/gallery/gallery-3.png"
+    imageUrl: "/gallery/gallery-3.png",
   },
   {
-    title: "Daily Ritual",
-    description: "A soft self-care composition made for everyday elevation.",
-    category: "Ritual",
-    imageUrl: "/gallery/gallery-4.png"
+    title: "Style Reference",
+    description:
+      "Neutral styling details for a clean catalog browsing experience.",
+    category: "Fashion",
+    imageUrl: "/gallery/gallery-4.png",
   },
   {
-    title: "Evening Signature",
-    description: "Fragrance and finish for moments that deserve attention.",
-    category: "Fragrance",
-    imageUrl: "/gallery/gallery-5.png"
+    title: "Evening Detail",
+    description: "Polished accessories and finish for customer inspiration.",
+    category: "Accessories",
+    imageUrl: "/gallery/gallery-5.png",
   },
   {
     title: "Ivory Light",
-    description: "Minimal, luminous styling with a premium black and gold palette.",
+    description:
+      "Minimal, luminous styling with a premium black and gold palette.",
     category: "Editorial",
-    imageUrl: "/gallery/gallery-6.png"
-  }
+    imageUrl: "/gallery/gallery-6.png",
+  },
 ];
 
-export const testimonials = [
-  {
-    name: "Amara L.",
-    rating: 5,
-    review:
-      "Everything felt intentional, from the product recommendation to the packaging. It made the gift feel personal."
-  },
-  {
-    name: "Nadia R.",
-    rating: 5,
-    review:
-      "The shopping experience was easy and elegant. I found something beautiful without feeling overwhelmed."
-  },
-  {
-    name: "Maya C.",
-    rating: 5,
-    review:
-      "The products feel elevated but still warm and wearable. I would absolutely order again."
-  },
-  {
-    name: "Claudia S.",
-    rating: 5,
-    review:
-      "A premium experience from start to finish. The gift set looked stunning when it arrived."
-  }
-];
+export const testimonials: Testimonial[] = [];
 
 export const policyContent = {
   privacy:
-    "ONLY COLLECTION respects your privacy. Customer information is used to process orders, respond to inquiries, improve the shopping experience, and send updates only when consent is provided.",
+    "ONLY COLLECTION respects your privacy. Customer information is used to respond to inquiries, confirm requested product details, and send updates only when consent is provided.",
   terms:
-    "By using this website, customers agree to use the store lawfully, provide accurate checkout information, and respect product availability, pricing, and policy updates displayed at the time of purchase.",
+    "By using this website, customers agree to use the catalog inquiry service lawfully, provide accurate inquiry information, and understand that external catalog products, prices, sizes, colors, and availability require confirmation.",
   shipping:
-    "Orders are prepared with care and typically ship within 2-4 business days. Return eligibility depends on product condition, hygiene requirements, and final sale notices shown on product pages."
+    "Delivery timing, shipping options, and return eligibility must be confirmed for each inquiry before payment. Direct online checkout is not currently available.",
 };

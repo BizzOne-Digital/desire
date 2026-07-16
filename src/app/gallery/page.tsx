@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { GalleryClient } from "@/components/gallery-client";
-import { EditorialImageStrip, PageHero } from "@/components/sections";
+import { PageHero } from "@/components/sections";
 import { getGalleryItems } from "@/lib/store";
-import { getImageSet } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "Premium gallery with category filters, editorial masonry layout, and lightbox-ready imagery."
+  description:
+    "Editorial inspiration for the ONLY COLLECTION catalog inquiry experience.",
 };
 
 export default async function GalleryPage() {
@@ -16,12 +16,11 @@ export default async function GalleryPage() {
     <>
       <PageHero
         eyebrow="Gallery"
-        title="A visual world of texture, light, and polish."
-        text="Filter editorial moments, product styling, ritual imagery, and premium packaging visuals managed from admin."
+        title="A visual mood for catalog browsing."
+        text="Explore neutral fashion and lifestyle imagery that supports the ONLY COLLECTION black-and-gold catalog experience."
         image="/pages/gallery-hero.png"
       />
       <GalleryClient items={items} />
-      <EditorialImageStrip images={getImageSet("gallery")} title="Gallery Editorial Set" />
     </>
   );
 }

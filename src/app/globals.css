@@ -26,11 +26,27 @@ body {
   min-height: 100vh;
   overflow-x: clip;
   background:
-    radial-gradient(circle at 12% 8%, rgba(215, 181, 109, 0.16), transparent 31rem),
-    radial-gradient(circle at 88% 2%, rgba(169, 120, 40, 0.16), transparent 32rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 100%),
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(215, 181, 109, 0.16),
+      transparent 31rem
+    ),
+    radial-gradient(
+      circle at 88% 2%,
+      rgba(169, 120, 40, 0.16),
+      transparent 32rem
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03) 0 1px,
+      transparent 1px 100%
+    ),
     var(--background);
-  background-size: auto, auto, 36px 36px, auto;
+  background-size:
+    auto,
+    auto,
+    36px 36px,
+    auto;
   color: var(--foreground);
 }
 
@@ -178,7 +194,11 @@ main {
 
 .glass-panel {
   border: 1px solid rgba(215, 181, 109, 0.16);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.025)
+  );
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(18px);
 }
@@ -207,14 +227,24 @@ main {
   width: 26rem;
   height: 26rem;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(215, 181, 109, 0.22), transparent 67%);
+  background: radial-gradient(
+    circle,
+    rgba(215, 181, 109, 0.22),
+    transparent 67%
+  );
   filter: blur(8px);
 }
 
 .editorial-kicker {
   border: 1px solid rgba(215, 181, 109, 0.22);
-  background: linear-gradient(135deg, rgba(215, 181, 109, 0.14), rgba(255, 255, 255, 0.035));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 22px 70px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(215, 181, 109, 0.14),
+    rgba(255, 255, 255, 0.035)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 22px 70px rgba(0, 0, 0, 0.3);
 }
 
 .image-mask {

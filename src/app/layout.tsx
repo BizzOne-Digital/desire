@@ -10,47 +10,53 @@ import { getSiteSettings } from "@/lib/store";
 const display = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-display"
+  variable: "--font-display",
 });
 
 const body = Inter({
   subsets: ["latin"],
-  variable: "--font-body"
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: {
-    default: "ONLY COLLECTION | Luxury Online Boutique",
-    template: "%s | ONLY COLLECTION"
+    default: "ONLY COLLECTION | Fashion Catalog Inquiry Service",
+    template: "%s | ONLY COLLECTION",
   },
   description:
-    "Shop thoughtfully selected luxury products, gifts, fragrance, accessories, and elevated daily rituals.",
+    "Browse external fashion catalogs and submit product inquiries for pricing and availability confirmation.",
   openGraph: {
     title: "ONLY COLLECTION",
     description:
-      "A premium commerce experience for thoughtfully selected products and elevated gifting.",
+      "A premium catalog inquiry experience for fashion sourcing requests.",
     url: absoluteUrl(),
     siteName: "ONLY COLLECTION",
     images: [{ url: absoluteUrl("/og-image.jpg"), width: 1200, height: 630 }],
-    type: "website"
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "ONLY COLLECTION",
-    description: "Luxury commerce for refined products and thoughtful gifting."
+    description: "Fashion catalog browsing with product inquiry support.",
   },
   alternates: {
-    canonical: absoluteUrl()
+    canonical: absoluteUrl(),
   },
   icons: {
     icon: [{ url: "/logo.png", type: "image/png" }],
     shortcut: ["/logo.png"],
-    apple: [{ url: "/logo.png", type: "image/png" }]
-  }
+    apple: [{ url: "/logo.png", type: "image/png" }],
+  },
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const settings = await getSiteSettings();
 
   return (
@@ -64,10 +70,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             email: settings.email,
             telephone: settings.phone,
             url: absoluteUrl(),
-            logo: absoluteUrl(settings.logoUrl || "/logo.png")
+            logo: absoluteUrl(settings.logoUrl || "/logo.png"),
           }}
         />
-        <SiteChrome settings={{ businessName: settings.businessName, logoUrl: settings.logoUrl }}>
+        <SiteChrome
+          settings={{
+            businessName: settings.businessName,
+            logoUrl: settings.logoUrl,
+          }}
+        >
           {children}
         </SiteChrome>
         <Toaster theme="dark" richColors position="bottom-right" />

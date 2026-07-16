@@ -25,12 +25,12 @@ export function PolicyPage({
           <div className="mt-8 grid gap-6 text-base leading-8 text-ivory/70">
             <p>{body}</p>
             <p>
-              This placeholder policy is production-structured and editable from the admin dashboard.
-              The client should review all legal copy with appropriate counsel before launch.
+              These terms are provided for customer clarity and should be reviewed by the site owner
+              before accepting payments or confirming customer orders.
             </p>
             <p>
               Contact ONLY COLLECTION at onlycollection21@gmail.com or (514) 709-8704 for questions
-              about orders, shipping, privacy, or support.
+              about inquiries, delivery details, privacy, or support.
             </p>
           </div>
         </article>
