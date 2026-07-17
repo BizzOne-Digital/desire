@@ -4,9 +4,10 @@ import { NewsletterForm } from "@/components/forms";
 import { siteConfig } from "@/lib/content";
 
 const links = [
-  ["Shop Catalogs", "/shop"],
-  ["How to Order", "/how-to-order"],
-  ["Product Inquiry", "/product-inquiry"],
+  ["Shop", "/shop"],
+  ["Services", "/services"],
+  ["Gallery", "/gallery"],
+  ["About", "/about"],
   ["Contact", "/contact"],
 ];
 
@@ -37,14 +38,8 @@ export function SiteFooter({
             className="h-24 w-auto object-contain drop-shadow-[0_0_38px_rgba(215,181,109,0.28)] sm:h-32 md:h-40"
           />
           <p className="mt-4 max-w-sm text-sm leading-7 text-ivory/70 sm:mt-5">
-            Browse curated fashion catalogs, send your item reference, and
-            receive confirmation for pricing, availability, and delivery before
-            ordering.
-          </p>
-          <p className="mt-4 max-w-sm text-xs leading-6 text-ivory/48">
-            Catalog products, prices, sizes, colors, and availability are
-            subject to confirmation. External catalogs are operated by
-            third-party suppliers.
+            A refined fashion destination designed for confidence, comfort, and
+            timeless expression.
           </p>
           <div className="mt-7 h-px w-28 bg-gold-gradient" />
         </div>
@@ -88,8 +83,7 @@ export function SiteFooter({
             Stay Close
           </h2>
           <p className="mt-5 text-sm leading-7 text-ivory/70">
-            Receive catalog updates, sourcing notes, and availability
-            announcements.
+            Receive new arrivals, editorial notes, and brand announcements.
           </p>
           <div className="mt-5">
             <NewsletterForm compact />
@@ -103,7 +97,7 @@ export function SiteFooter({
       <div className="border-t border-white/10 py-6">
         <div className="luxury-container flex flex-col gap-3 text-xs text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} All rights reserved.</p>
-          <p>Catalog inquiry service for ONLY COLLECTION.</p>
+          <p>ONLY COLLECTION</p>
         </div>
       </div>
     </footer>

@@ -6,7 +6,7 @@ import { getGalleryItems } from "@/lib/store";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Editorial inspiration for the ONLY COLLECTION catalog inquiry experience.",
+    "Editorial inspiration for the ONLY COLLECTION black-and-gold fashion experience.",
 };
 
 export default async function GalleryPage() {
@@ -16,8 +16,8 @@ export default async function GalleryPage() {
     <>
       <PageHero
         eyebrow="Gallery"
-        title="A visual mood for catalog browsing."
-        text="Explore neutral fashion and lifestyle imagery that supports the ONLY COLLECTION black-and-gold catalog experience."
+        title="A refined visual world."
+        text="Explore fashion and lifestyle imagery that supports the ONLY COLLECTION black-and-gold aesthetic."
         image="/pages/gallery-hero.png"
       />
       <GalleryClient items={items} />

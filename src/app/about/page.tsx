@@ -12,7 +12,7 @@ import { getImageSet } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn how ONLY COLLECTION helps customers browse fashion catalogs and submit product inquiries.",
+    "Learn about ONLY COLLECTION and the brand’s focus on refined fashion and elevated presentation.",
 };
 
 export default function AboutPage() {
@@ -20,22 +20,22 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title="Catalog browsing with personal confirmation."
-        text="ONLY COLLECTION helps customers explore fashion supplier catalogs and request clear confirmation before ordering."
+        title="A brand built for confidence and quiet luxury."
+        text="ONLY COLLECTION is shaped around refined style, careful presentation, and a calm customer experience."
         image="/pages/about-hero.png"
       />
       <section className="luxury-container grid gap-12 py-24 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <SectionHeading
             eyebrow="Our Story"
-            title="A clear way to browse, ask, and confirm."
-            text="The service is built for customers who want to browse external catalogs, send product references, and receive human confirmation for price, availability, sizing, color, and delivery."
+            title="Designed to feel personal and polished."
+            text="The brand focuses on elevated fashion details, clear communication, and a premium visual world that feels intentional from first glance."
           />
           <Link
             href="/shop"
             className="inline-flex rounded-full bg-gold-gradient px-8 py-4 text-sm font-bold uppercase tracking-[0.22em] text-black"
           >
-            Browse Catalogs
+            Explore Shop
           </Link>
         </Reveal>
         <Reveal delay={0.1}>
@@ -54,15 +54,15 @@ export default function AboutPage() {
           {[
             [
               "Mission",
-              "To make catalog browsing clearer with a simple product inquiry process.",
+              "To help people feel extraordinary through refined fashion and thoughtful presentation.",
             ],
             [
               "Vision",
-              "To become a trusted contact point for fashion catalog sourcing requests.",
+              "To become a trusted destination for elevated style and a calm luxury experience.",
             ],
             [
               "Promise",
-              "Every inquiry is handled with clear confirmation before payment or ordering.",
+              "Every detail is handled with care, clarity, and a premium sense of finish.",
             ],
           ].map(([title, text]) => (
             <Reveal key={title}>
@@ -93,15 +93,15 @@ export default function AboutPage() {
       <section className="luxury-container pb-24">
         <SectionHeading
           eyebrow="Journey"
-          title="How customers use ONLY COLLECTION."
+          title="How customers experience ONLY COLLECTION."
           centered
         />
         <div className="mx-auto max-w-3xl border-l border-champagne/25 pl-7">
           {[
-            "Browse catalogs",
-            "Select product reference",
-            "Submit inquiry",
-            "Confirm before ordering",
+            "Discover the collections",
+            "Explore the visual world",
+            "Ask for guidance",
+            "Stay connected with the brand",
           ].map((item, index) => (
             <Reveal key={item}>
               <div className="relative mb-8">

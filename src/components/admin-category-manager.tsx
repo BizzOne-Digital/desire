@@ -3,11 +3,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
-import type { Catalog, CatalogCategory } from "@/lib/catalogs";
+import type { Category } from "@/lib/content";
 import { slugify } from "@/lib/utils";
 
-type EditableCatalog = Catalog & {
-  key?: string;
+type EditableCategory = Category & {
   sortOrder?: number;
 };
 
@@ -18,15 +17,15 @@ export function AdminCategoryManager({
   initialCategories,
   databaseEnabled,
 }: {
-  initialCategories: EditableCatalog[];
+  initialCategories: EditableCategory[];
   databaseEnabled: boolean;
 }) {
   const [categories, setCategories] = useState(initialCategories);
-  const [editing, setEditing] = useState<EditableCatalog | null>(null);
+  const [editing, setEditing] = useState<EditableCategory | null>(null);
 
-  async function remove(category: EditableCatalog) {
+  async function remove(category: EditableCategory) {
     if (!category.id || !databaseEnabled) {
-      toast.error("Connect MongoDB to persist catalog deletes.");
+      toast.error("Connect MongoDB to persist category deletes.");
       return;
     }
 
@@ -34,7 +33,7 @@ export function AdminCategoryManager({
       method: "DELETE",
     });
     if (!response.ok) {
-      toast.error("Catalog could not be deleted.");
+      toast.error("Category could not be deleted.");
       return;
     }
 
@@ -44,17 +43,15 @@ export function AdminCategoryManager({
     if (editing?.id === category.id) {
       setEditing(null);
     }
-    toast.success("Catalog deleted.");
+    toast.success("Category deleted.");
   }
 
   return (
-    <div
-      className={editing ? "grid gap-6 lg:grid-cols-[1fr_420px]" : "grid gap-6"}
-    >
+    <div className={editing ? "grid gap-6 lg:grid-cols-[1fr_420px]" : "grid gap-6"}>
       <section>
         <div className="mb-5 flex justify-end">
           <button
-            onClick={() => setEditing(emptyCatalog)}
+            onClick={() => setEditing(emptyCategory)}
             className="rounded-full bg-gold-gradient px-6 py-3 text-xs font-bold uppercase tracking-[0.22em] text-black"
           >
             Add Category
@@ -63,37 +60,22 @@ export function AdminCategoryManager({
         <div className="grid gap-5 md:grid-cols-3">
           {categories.map((category) => (
             <article
-              key={category.id}
+              key={category.id || category.slug}
               className="glass-panel overflow-hidden rounded-[1.8rem]"
             >
               <div className="relative aspect-[4/3]">
                 <Image
-                  src={category.image || "/pages/shop-hero.png"}
+                  src={category.imageUrl}
                   alt={category.name}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-5">
-                <h2 className="font-serif text-3xl text-ivory">
-                  {category.name}
-                </h2>
+                <h2 className="font-serif text-3xl text-ivory">{category.name}</h2>
                 <p className="mt-2 text-sm leading-6 text-ivory/62">
                   {category.description}
                 </p>
-                <p className="mt-3 break-all text-xs text-champagne/75">
-                  {category.url}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="rounded-full border border-champagne/25 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ivory/60">
-                    {category.category}
-                  </span>
-                  {category.requiresPassword && (
-                    <span className="rounded-full bg-champagne px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-black">
-                      Code: {category.accessCode}
-                    </span>
-                  )}
-                </div>
                 <div className="mt-5 flex gap-3">
                   <button
                     className="text-sm text-champagne"
@@ -122,9 +104,9 @@ export function AdminCategoryManager({
           onCancel={() => setEditing(null)}
           onChangeName={(name) =>
             setEditing((current) => ({
-              ...(current ?? emptyCatalog),
+              ...(current ?? emptyCategory),
               name,
-              key: slugify(name),
+              slug: slugify(name),
             }))
           }
           onSaved={(saved) => {
@@ -149,30 +131,25 @@ function CategoryForm({
   onChangeName,
   onSaved,
 }: {
-  category: EditableCatalog;
+  category: EditableCategory;
   databaseEnabled: boolean;
   onCancel: () => void;
   onChangeName: (name: string) => void;
-  onSaved: (category: EditableCatalog) => void;
+  onSaved: (category: EditableCategory) => void;
 }) {
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const payload = {
       name: String(form.get("name")),
-      key: String(form.get("key")),
+      slug: String(form.get("slug")),
       description: String(form.get("description")),
-      url: String(form.get("url")),
-      category: String(form.get("category")) as CatalogCategory,
-      image: String(form.get("image")),
-      accessCode: String(form.get("accessCode")),
-      requiresPassword: form.get("requiresPassword") === "on",
-      featured: form.get("featured") === "on",
+      imageUrl: String(form.get("imageUrl")),
       sortOrder: Number(form.get("sortOrder") || 0),
     };
 
     if (!databaseEnabled) {
-      toast.error("Connect MongoDB to persist catalog category changes.");
+      toast.error("Connect MongoDB to persist category changes.");
       return;
     }
 
@@ -188,22 +165,19 @@ function CategoryForm({
     );
     const data = await response.json();
     if (!response.ok) {
-      toast.error(data.error || "Catalog could not be saved.");
+      toast.error(data.error || "Category could not be saved.");
       return;
     }
 
-    toast.success("Catalog saved.");
-    onSaved({ id: data.catalog.id, ...payload });
+    toast.success("Category saved.");
+    onSaved({ id: data.category.id, ...payload });
   }
 
   return (
-    <form
-      onSubmit={submit}
-      className="glass-panel grid h-fit gap-4 rounded-[1.8rem] p-6"
-    >
+    <form onSubmit={submit} className="glass-panel grid h-fit gap-4 rounded-[1.8rem] p-6">
       <div className="flex items-start justify-between gap-4">
         <h2 className="font-serif text-4xl text-ivory">
-          {category.id ? "Edit Catalog" : "Add Category"}
+          {category.id ? "Edit Category" : "Add Category"}
         </h2>
         <button
           type="button"
@@ -221,21 +195,12 @@ function CategoryForm({
         onChange={(event) => onChangeName(event.target.value)}
       />
       <input
-        name="key"
+        name="slug"
         className={fieldClass}
-        placeholder="Catalog key"
-        defaultValue={category.key ?? category.id}
+        placeholder="Slug"
+        value={category.slug}
+        readOnly
       />
-      <select
-        name="category"
-        className={fieldClass}
-        defaultValue={category.category}
-      >
-        <option value="Shoes">Shoes</option>
-        <option value="Bags">Bags</option>
-        <option value="Clothing">Clothing</option>
-        <option value="Accessories">Accessories</option>
-      </select>
       <textarea
         name="description"
         className={`${fieldClass} min-h-28`}
@@ -243,22 +208,10 @@ function CategoryForm({
         defaultValue={category.description}
       />
       <input
-        name="url"
-        className={fieldClass}
-        placeholder="Catalog link (https://...)"
-        defaultValue={category.url}
-      />
-      <input
-        name="image"
+        name="imageUrl"
         className={fieldClass}
         placeholder="Image URL or media item"
-        defaultValue={category.image}
-      />
-      <input
-        name="accessCode"
-        className={fieldClass}
-        placeholder="Access code (optional)"
-        defaultValue={category.accessCode}
+        defaultValue={category.imageUrl}
       />
       <input
         name="sortOrder"
@@ -267,38 +220,18 @@ function CategoryForm({
         type="number"
         defaultValue={category.sortOrder ?? 0}
       />
-      <div className="grid gap-2 text-sm text-ivory/70">
-        <label>
-          <input
-            name="requiresPassword"
-            type="checkbox"
-            defaultChecked={category.requiresPassword}
-          />{" "}
-          Password required
-        </label>
-        <label>
-          <input
-            name="featured"
-            type="checkbox"
-            defaultChecked={category.featured}
-          />{" "}
-          Feature on homepage
-        </label>
-      </div>
       <button className="rounded-full bg-gold-gradient px-6 py-3 text-xs font-bold uppercase tracking-[0.22em] text-black">
-        Save Catalog
+        Save Category
       </button>
     </form>
   );
 }
 
-const emptyCatalog: EditableCatalog = {
+const emptyCategory: EditableCategory = {
   id: "",
-  key: "",
   name: "",
+  slug: "",
   description: "",
-  url: "",
-  category: "Accessories",
-  image: "/pages/shop-hero.png",
+  imageUrl: "/pages/shop-hero.png",
   sortOrder: 0,
 };

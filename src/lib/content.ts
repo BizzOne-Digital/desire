@@ -65,7 +65,7 @@ export const siteConfig = {
   logoUrl: "/logo.png",
   currentWebsite: "veloriancollection.myshopify.com",
   description:
-    "A premium catalog inquiry service for customers browsing external fashion supplier catalogs.",
+    "A refined fashion destination designed for confidence, comfort, and timeless expression.",
   address: "",
   businessHours: "",
   socialLinks: {
@@ -438,51 +438,51 @@ export const products: Product[] = [
 
 export const services: Service[] = [
   {
-    title: "Catalog Browsing Support",
-    slug: "catalog-browsing-support",
+    title: "Personal Styling",
+    slug: "personal-styling",
     description:
-      "Guidance for customers comparing supplier catalog links, albums, and product references.",
+      "Thoughtful guidance for choosing pieces that feel polished, personal, and ready to wear.",
     imageUrl: "/services/services-1.png",
     features: [
-      "Catalog navigation help",
-      "Product reference checks",
-      "Inquiry preparation",
+      "Style direction",
+      "Collection recommendations",
+      "Look refinement",
     ],
   },
   {
-    title: "Product Inquiry Review",
-    slug: "product-inquiry-review",
+    title: "Gift Guidance",
+    slug: "gift-guidance",
     description:
-      "Support for organizing product links, codes, sizes, colors, quantities, and delivery details.",
+      "Support for selecting elevated gifts with clear presentation and a refined finish.",
     imageUrl: "/services/services-2.png",
     features: [
-      "Link or code review",
-      "Size and color notes",
-      "Country-specific details",
+      "Gift shortlists",
+      "Presentation notes",
+      "Occasion-ready ideas",
     ],
   },
   {
-    title: "Availability Confirmation",
-    slug: "availability-confirmation",
+    title: "Customer Support",
+    slug: "customer-support",
     description:
-      "Confirmation-focused support before a customer commits to an order or payment.",
+      "Clear answers for collection questions, sizing notes, and brand support requests.",
     imageUrl: "/services/services-3.png",
     features: [
-      "Price confirmation",
-      "Availability check",
-      "Delivery time estimate",
+      "Direct responses",
+      "Collection help",
+      "Careful follow-up",
     ],
   },
   {
-    title: "Sourcing Requests",
-    slug: "sourcing-requests",
+    title: "Editorial Inspiration",
+    slug: "editorial-inspiration",
     description:
-      "Help with multi-item requests and catalog references across fashion categories.",
+      "Visual moodboards and brand imagery that support a calm luxury experience.",
     imageUrl: "/services/services-4.png",
     features: [
-      "Multiple item inquiries",
-      "Category guidance",
-      "Direct customer support",
+      "Gallery references",
+      "Mood direction",
+      "Brand storytelling",
     ],
   },
 ];
@@ -532,8 +532,8 @@ export const galleryItems: GalleryItem[] = [
     imageUrl: "/gallery/gallery-1.png",
   },
   {
-    title: "Catalog Mood",
-    description: "A refined visual reference for browsing fashion categories.",
+    title: "Evening Mood",
+    description: "A refined visual reference for polished fashion moments.",
     category: "Editorial",
     imageUrl: "/gallery/gallery-2.png",
   },
@@ -546,8 +546,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     title: "Style Reference",
-    description:
-      "Neutral styling details for a clean catalog browsing experience.",
+    description: "Neutral styling details for a clean luxury fashion look.",
     category: "Fashion",
     imageUrl: "/gallery/gallery-4.png",
   },
@@ -570,9 +569,9 @@ export const testimonials: Testimonial[] = [];
 
 export const policyContent = {
   privacy:
-    "ONLY COLLECTION respects your privacy. Customer information is used to respond to inquiries, confirm requested product details, and send updates only when consent is provided.",
+    "ONLY COLLECTION respects your privacy. Customer information is used to respond to messages, provide support, and send updates only when consent is provided.",
   terms:
-    "By using this website, customers agree to use the catalog inquiry service lawfully, provide accurate inquiry information, and understand that external catalog products, prices, sizes, colors, and availability require confirmation.",
+    "By using this website, customers agree to use the service lawfully, provide accurate information, and understand that product details, pricing, and availability may require confirmation.",
   shipping:
-    "Delivery timing, shipping options, and return eligibility must be confirmed for each inquiry before payment. Direct online checkout is not currently available.",
+    "Delivery timing, shipping options, and return eligibility are confirmed for each request. Direct online checkout is not currently available.",
 };

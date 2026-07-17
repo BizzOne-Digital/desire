@@ -11,7 +11,7 @@ import { getImageSet } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact ONLY COLLECTION for catalog questions and product inquiry support.",
+    "Contact ONLY COLLECTION for collection questions and styling support.",
 };
 
 export default function ContactPage() {
@@ -19,16 +19,16 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Questions before you submit an inquiry?"
-        text="Contact us for catalog browsing help, product reference questions, or delivery-related questions."
+        title="We would love to hear from you."
+        text="Reach out for collection questions, styling guidance, or general brand support."
         image="/pages/contact-hero.png"
       />
       <section className="luxury-container grid gap-10 py-24 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
           <SectionHeading
             eyebrow="Reach Us"
-            title="Support for catalog customers."
-            text="For product-specific pricing and availability, please use the Product Inquiry form and include the catalog link or product code."
+            title="Clear support for every message."
+            text="Share your question and we will respond with helpful, carefully considered guidance."
           />
           <div className="grid gap-4 text-ivory/72">
             <p>

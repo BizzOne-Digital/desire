@@ -1,6 +1,5 @@
 import { AdminShell } from "@/components/admin-shell";
-import { catalogs } from "@/lib/catalogs";
-import { galleryItems, services, siteConfig } from "@/lib/content";
+import { categories, galleryItems, services, siteConfig } from "@/lib/content";
 
 const sections = [
   "Business name",
@@ -9,8 +8,6 @@ const sections = [
   "CTA labels",
   "About content",
   "Services",
-  "How to order",
-  "Product inquiry",
   "Gallery",
   "Contact details",
   "Footer content",
@@ -48,34 +45,31 @@ export default function AdminContentPage() {
           />
           <textarea
             className="min-h-24 rounded-2xl border border-champagne/15 bg-black/35 px-4 py-3"
-            defaultValue="Browse fashion catalogs, choose the item you like, and send us the link or code for confirmation."
+            defaultValue="Discover a refined collection created for confidence, comfort, and timeless expression."
           />
           <input
             className="rounded-2xl border border-champagne/15 bg-black/35 px-4 py-3"
-            defaultValue="Browse Catalogs"
+            defaultValue="Explore Shop"
           />
           <input
             className="rounded-2xl border border-champagne/15 bg-black/35 px-4 py-3"
-            defaultValue="How to Order"
+            defaultValue="Explore Brand"
           />
           <textarea
             className="min-h-24 rounded-2xl border border-champagne/15 bg-black/35 px-4 py-3"
-            defaultValue="ONLY COLLECTION helps customers browse external catalogs and request confirmation for pricing, availability, sizing, color, and delivery."
+            defaultValue="ONLY COLLECTION focuses on elevated style, careful presentation, and a calm shopping experience."
           />
           <button className="rounded-full bg-gold-gradient px-6 py-3 text-xs font-bold uppercase tracking-[0.22em] text-black">
             Save Content
           </button>
           <p className="text-xs leading-6 text-ivory/48">
-            Use Settings for site-wide details and Categories for catalog links
-            and access codes.
+            Use Settings for site-wide details and Categories for collection
+            cards on the shop page.
           </p>
         </form>
       </div>
       <div className="mt-8 grid gap-5 md:grid-cols-3">
-        <Panel
-          title="Catalogs"
-          value={`${catalogs.length} configured catalog links`}
-        />
+        <Panel title="Categories" value={`${categories.length} collection cards`} />
         <Panel title="Services" value={`${services.length} support sections`} />
         <Panel title="Gallery" value={`${galleryItems.length} gallery items`} />
       </div>

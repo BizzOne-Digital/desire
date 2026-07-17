@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
-import { catalogs } from "@/lib/catalogs";
-import { getCatalogs } from "@/lib/catalog-store";
-import { hasDatabase } from "@/lib/db";
+import { categories } from "@/lib/content";
+import { hasDatabase, prisma } from "@/lib/db";
 import { getMongoDb, ObjectId } from "@/lib/mongodb";
-import { catalogSchema } from "@/lib/validators";
+import { categorySchema } from "@/lib/validators";
 
 async function requireAdmin() {
   const session = await getAdminSession();
@@ -16,7 +15,12 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  return NextResponse.json({ catalogs: await getCatalogs() });
+  if (!hasDatabase) {
+    return NextResponse.json({ categories });
+  }
+
+  const rows = await prisma.category.findMany({ orderBy: { sortOrder: "asc" } });
+  return NextResponse.json({ categories: rows });
 }
 
 export async function POST(request: Request) {
@@ -25,29 +29,26 @@ export async function POST(request: Request) {
   }
   if (!hasDatabase) {
     return NextResponse.json(
-      { error: "Configure DATABASE_URL to create catalog categories." },
+      { error: "Configure DATABASE_URL to create categories." },
       { status: 503 },
     );
   }
 
-  const parsed = catalogSchema.safeParse(await request.json());
+  const parsed = categorySchema.safeParse(await request.json());
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Invalid catalog data." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Invalid category data." }, { status: 400 });
   }
 
   const now = new Date();
   const db = await getMongoDb();
-  const result = await db.collection("Catalog").insertOne({
+  const result = await db.collection("Category").insertOne({
     ...parsed.data,
     createdAt: now,
     updatedAt: now,
   });
 
   return NextResponse.json({
-    catalog: { id: result.insertedId.toString(), ...parsed.data },
+    category: { id: result.insertedId.toString(), ...parsed.data },
   });
 }
 
@@ -57,50 +58,29 @@ export async function PUT(request: Request) {
   }
   if (!hasDatabase) {
     return NextResponse.json(
-      { error: "Configure DATABASE_URL to update catalog categories." },
+      { error: "Configure DATABASE_URL to update categories." },
       { status: 503 },
     );
   }
 
   const url = new URL(request.url);
   const id = url.searchParams.get("id");
-  if (!id) {
-    return NextResponse.json({ error: "Invalid catalog id." }, { status: 400 });
+  if (!id || !ObjectId.isValid(id)) {
+    return NextResponse.json({ error: "Invalid category id." }, { status: 400 });
   }
 
-  const parsed = catalogSchema.safeParse(await request.json());
+  const parsed = categorySchema.safeParse(await request.json());
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Invalid catalog data." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Invalid category data." }, { status: 400 });
   }
 
   const db = await getMongoDb();
-  if (ObjectId.isValid(id)) {
-    await db
-      .collection("Catalog")
-      .updateOne(
-        { _id: new ObjectId(id) },
-        { $set: { ...parsed.data, disabled: false, updatedAt: new Date() } },
-      );
-  } else {
-    await db.collection("Catalog").updateOne(
-      { key: id },
-      {
-        $set: {
-          ...parsed.data,
-          key: id,
-          disabled: false,
-          updatedAt: new Date(),
-        },
-        $setOnInsert: { createdAt: new Date() },
-      },
-      { upsert: true },
-    );
-  }
+  await db.collection("Category").updateOne(
+    { _id: new ObjectId(id) },
+    { $set: { ...parsed.data, updatedAt: new Date() } },
+  );
 
-  return NextResponse.json({ catalog: { id, ...parsed.data } });
+  return NextResponse.json({ category: { id, ...parsed.data } });
 }
 
 export async function DELETE(request: Request) {
@@ -109,32 +89,21 @@ export async function DELETE(request: Request) {
   }
   if (!hasDatabase) {
     return NextResponse.json(
-      { error: "Configure DATABASE_URL to delete catalog categories." },
+      { error: "Configure DATABASE_URL to delete categories." },
       { status: 503 },
     );
   }
 
   const url = new URL(request.url);
   const id = url.searchParams.get("id");
-  if (!id) {
-    return NextResponse.json({ error: "Invalid catalog id." }, { status: 400 });
+  if (!id || !ObjectId.isValid(id)) {
+    return NextResponse.json({ error: "Invalid category id." }, { status: 400 });
   }
 
   const db = await getMongoDb();
-  if (ObjectId.isValid(id)) {
-    await db.collection("Catalog").deleteOne({ _id: new ObjectId(id) });
-  } else if (catalogs.some((catalog) => catalog.id === id)) {
-    await db.collection("Catalog").updateOne(
-      { key: id },
-      {
-        $set: { key: id, disabled: true, updatedAt: new Date() },
-        $setOnInsert: { createdAt: new Date() },
-      },
-      { upsert: true },
-    );
-  } else {
-    await db.collection("Catalog").deleteOne({ key: id });
-  }
+  const categoryId = new ObjectId(id);
+  await db.collection("Product").updateMany({ categoryId }, { $unset: { categoryId: "" } });
+  await db.collection("Category").deleteOne({ _id: categoryId });
 
   return NextResponse.json({ ok: true });
 }

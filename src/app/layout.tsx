@@ -23,15 +23,15 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
   title: {
-    default: "ONLY COLLECTION | Fashion Catalog Inquiry Service",
+    default: "ONLY COLLECTION | Luxury Fashion",
     template: "%s | ONLY COLLECTION",
   },
   description:
-    "Browse external fashion catalogs and submit product inquiries for pricing and availability confirmation.",
+    "A refined fashion destination designed for confidence, comfort, and timeless expression.",
   openGraph: {
     title: "ONLY COLLECTION",
     description:
-      "A premium catalog inquiry experience for fashion sourcing requests.",
+      "A premium black-and-gold fashion experience from ONLY COLLECTION.",
     url: absoluteUrl(),
     siteName: "ONLY COLLECTION",
     images: [{ url: absoluteUrl("/og-image.jpg"), width: 1200, height: 630 }],
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "ONLY COLLECTION",
-    description: "Fashion catalog browsing with product inquiry support.",
+    description: "Luxury fashion designed to feel extraordinary.",
   },
   alternates: {
     canonical: absoluteUrl(),

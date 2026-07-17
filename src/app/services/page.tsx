@@ -13,7 +13,7 @@ import { getImageSet } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Catalog browsing guidance, product inquiry support, and confirmation before ordering.",
+    "Styling guidance, personal support, and a refined customer experience from ONLY COLLECTION.",
 };
 
 export default function ServicesPage() {
@@ -21,15 +21,15 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Support for catalog inquiries."
-        text="Get help browsing external catalogs, organizing product references, and confirming price, availability, sizing, color, and delivery details."
+        title="Support shaped around a refined experience."
+        text="From styling guidance to personal support, every service is designed to feel calm, clear, and premium."
         image="/pages/services-hero.png"
-        cta={{ label: "Submit Inquiry", href: "/product-inquiry" }}
+        cta={{ label: "Contact Us", href: "/contact" }}
       />
       <section className="luxury-container py-24">
         <SectionHeading
           eyebrow="What We Offer"
-          title="Clear support from catalog to confirmation."
+          title="Careful support for every customer journey."
           centered
         />
         <div className="grid gap-7 md:grid-cols-2">
@@ -71,15 +71,15 @@ export default function ServicesPage() {
         <div className="luxury-container">
           <SectionHeading
             eyebrow="Process"
-            title="A calm path from catalog to confirmed details."
+            title="A calm path from discovery to support."
             centered
           />
           <div className="grid gap-5 md:grid-cols-4">
             {[
-              "Open catalog",
-              "Copy product link",
-              "Submit inquiry",
-              "Confirm details",
+              "Explore collections",
+              "Review details",
+              "Ask for guidance",
+              "Stay connected",
             ].map((step, index) => (
               <Reveal key={step}>
                 <div className="rounded-[1.6rem] border border-champagne/15 p-6">
@@ -100,16 +100,16 @@ export default function ServicesPage() {
         <div className="mx-auto grid max-w-3xl gap-4">
           {[
             [
-              "Do catalog links open in a new tab?",
-              "Yes. External catalogs open in a new tab so you can return to ONLY COLLECTION and submit your inquiry.",
+              "How can I ask about a collection?",
+              "Use the Contact page to share your questions and we will respond with clear guidance.",
             ],
             [
-              "Does submitting an inquiry create an order?",
-              "No. Price, availability, delivery time, and payment instructions must be confirmed first.",
+              "Is online checkout available right now?",
+              "Direct online checkout is currently unavailable. Contact us for pricing and availability details.",
             ],
             [
-              "Can I send a product code instead of a link?",
-              "Yes. A product code, album name, or clear product reference can be included in the inquiry form.",
+              "Can I request styling advice?",
+              "Yes. Reach out with the collection or look you have in mind and we will help guide the next step.",
             ],
           ].map(([question, answer]) => (
             <details
@@ -125,10 +125,10 @@ export default function ServicesPage() {
         </div>
         <div className="mt-10 text-center">
           <Link
-            href="/product-inquiry"
+            href="/contact"
             className="rounded-full bg-gold-gradient px-8 py-4 text-sm font-bold uppercase tracking-[0.22em] text-black"
           >
-            Submit Inquiry
+            Contact Us
           </Link>
         </div>
       </section>

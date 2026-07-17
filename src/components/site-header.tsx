@@ -3,15 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, MessageSquare, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   ["Home", "/"],
-  ["Shop Catalogs", "/shop"],
-  ["How to Order", "/how-to-order"],
+  ["Shop", "/shop"],
+  ["Services", "/services"],
+  ["Gallery", "/gallery"],
   ["About", "/about"],
   ["Contact", "/contact"],
 ];
@@ -80,18 +81,11 @@ export function SiteHeader({
 
         <div className="flex shrink-0 items-center justify-end gap-1 sm:min-w-[150px] sm:gap-4">
           <Link
-            href="/product-inquiry"
-            aria-label="Submit product inquiry"
+            href="/contact"
+            aria-label="Contact ONLY COLLECTION"
             className="hidden rounded-full bg-gold-gradient px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black transition hover:-translate-y-0.5 sm:inline-flex"
           >
-            Submit Inquiry
-          </Link>
-          <Link
-            href="/product-inquiry"
-            aria-label="Submit product inquiry"
-            className="rounded-full border border-champagne/15 bg-white/[0.03] p-2 text-ivory/85 transition hover:bg-white/10 hover:text-champagne sm:hidden"
-          >
-            <MessageSquare size={20} />
+            Contact
           </Link>
           <button
             type="button"
@@ -159,10 +153,10 @@ export function SiteHeader({
                   </div>
                 ))}
                 <Link
-                  href="/product-inquiry"
+                  href="/contact"
                   className="rounded-full bg-gold-gradient px-6 py-3 text-center text-xs font-bold uppercase tracking-[0.22em] text-black"
                 >
-                  Submit Inquiry
+                  Contact
                 </Link>
               </div>
             </motion.nav>

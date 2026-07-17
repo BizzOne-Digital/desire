@@ -4,7 +4,7 @@ import { UnavailableCheckoutNotice } from "@/components/unavailable-checkout-not
 export const metadata: Metadata = {
   title: "Checkout Unavailable",
   description:
-    "Direct checkout is unavailable. Submit a product inquiry for pricing and availability.",
+    "Direct checkout is unavailable. Please contact us for pricing and availability.",
 };
 
 export default function CheckoutPage() {

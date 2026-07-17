@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function OrderConfirmationPage() {
-  redirect("/product-inquiry");
+  redirect("/contact");
 }
