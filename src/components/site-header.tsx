@@ -10,9 +10,8 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   ["Home", "/"],
-  ["Shop", "/shop"],
-  ["Services", "/services"],
-  ["Gallery", "/gallery"],
+  ["Shop Catalog", "/shop"],
+  ["How to Order", "/how-to-order"],
   ["About", "/about"],
   ["Contact", "/contact"],
 ];
@@ -82,7 +81,7 @@ export function SiteHeader({
         <div className="flex shrink-0 items-center justify-end gap-1 sm:min-w-[150px] sm:gap-4">
           <Link
             href="/contact"
-            aria-label="Contact ONLY COLLECTION"
+            aria-label="Contact Sport Only"
             className="hidden rounded-full bg-gold-gradient px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black transition hover:-translate-y-0.5 sm:inline-flex"
           >
             Contact

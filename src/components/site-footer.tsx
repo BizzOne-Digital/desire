@@ -4,9 +4,9 @@ import { NewsletterForm } from "@/components/forms";
 import { siteConfig } from "@/lib/content";
 
 const links = [
-  ["Shop", "/shop"],
-  ["Services", "/services"],
-  ["Gallery", "/gallery"],
+  ["Shop Catalog", "/shop"],
+  ["How to Order", "/how-to-order"],
+  ["Product Inquiry", "/product-inquiry"],
   ["About", "/about"],
   ["Contact", "/contact"],
 ];
@@ -38,8 +38,10 @@ export function SiteFooter({
             className="h-24 w-auto object-contain drop-shadow-[0_0_38px_rgba(215,181,109,0.28)] sm:h-32 md:h-40"
           />
           <p className="mt-4 max-w-sm text-sm leading-7 text-ivory/70 sm:mt-5">
-            A refined fashion destination designed for confidence, comfort, and
-            timeless expression.
+            Your premier destination for authentic athletic merchandise. Browse our exclusive Sport Only catalog featuring premium sports products.
+          </p>
+          <p className="mt-3 max-w-sm text-xs leading-6 text-ivory/50">
+            Our catalog is hosted on an external platform. All products are subject to availability. Contact us for current pricing and shipping information.
           </p>
           <div className="mt-7 h-px w-28 bg-gold-gradient" />
         </div>
@@ -96,8 +98,8 @@ export function SiteFooter({
       </div>
       <div className="border-t border-white/10 py-6">
         <div className="luxury-container flex flex-col gap-3 text-xs text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} All rights reserved.</p>
-          <p>ONLY COLLECTION</p>
+          <p>© {new Date().getFullYear()} Sport Only. All rights reserved.</p>
+          <p>Sport Only - Premium Athletic Catalogs</p>
         </div>
       </div>
     </footer>

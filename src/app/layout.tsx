@@ -23,24 +23,24 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
   title: {
-    default: "ONLY COLLECTION | Luxury Fashion",
-    template: "%s | ONLY COLLECTION",
+    default: "Sport Only | Premium Athletic Catalogs",
+    template: "%s | Sport Only",
   },
   description:
-    "A refined fashion destination designed for confidence, comfort, and timeless expression.",
+    "Your premier destination for authentic athletic and sports catalogs. Browse sneakers, tennis shoes, bags, accessories, watches, and more.",
   openGraph: {
-    title: "ONLY COLLECTION",
+    title: "Sport Only",
     description:
-      "A premium black-and-gold fashion experience from ONLY COLLECTION.",
+      "Your premier destination for authentic athletic and sports catalogs.",
     url: absoluteUrl(),
-    siteName: "ONLY COLLECTION",
+    siteName: "Sport Only",
     images: [{ url: absoluteUrl("/og-image.jpg"), width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ONLY COLLECTION",
-    description: "Luxury fashion designed to feel extraordinary.",
+    title: "Sport Only",
+    description: "Premium athletic and sports catalogs.",
   },
   alternates: {
     canonical: absoluteUrl(),

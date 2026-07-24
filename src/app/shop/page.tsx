@@ -1,67 +1,70 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { EditorialImageStrip, PageHero, SectionHeading } from "@/components/sections";
 import { Reveal } from "@/components/motion";
-import { getCategories } from "@/lib/store";
+import { CatalogCard } from "@/components/catalog-card";
+import { catalogs } from "@/lib/catalogs";
 import { getImageSet } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Shop",
+  title: "Shop Catalog",
   description:
-    "Explore ONLY COLLECTION categories curated for a refined fashion experience.",
+    "Browse our exclusive Sport Only catalog featuring premium athletic merchandise.",
 };
 
-export default async function ShopPage() {
-  const categories = await getCategories();
-
+export default function ShopPage() {
   return (
     <>
       <PageHero
-        eyebrow="Shop"
-        title="Explore Our Collections"
-        text="Browse signature categories designed for confidence, comfort, and timeless expression."
+        eyebrow="Browse Catalog"
+        title="Sport Only Premium Collection"
+        text="Explore our exclusive catalog featuring authentic athletic merchandise. Click below to open our complete collection in a new window."
         image="/pages/shop-hero.png"
-        cta={{ label: "Contact Us", href: "/contact" }}
+        cta={{ label: "How to Order", href: "/how-to-order" }}
       />
       <section className="luxury-container py-16 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="Collections"
-          title="Choose a category to explore."
-          text="Each collection is presented with the same black-and-gold visual language used across the brand."
+          eyebrow="Our Catalog"
+          title="Sport Only Collection"
+          text="Browse our authentic athletic merchandise collection. Click the card below to explore our complete catalog."
           centered
         />
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {categories.map((category) => (
-            <Reveal key={category.id || category.slug}>
-              <article className="luxury-frame group relative min-h-[360px] overflow-hidden rounded-[1.6rem] border border-champagne/15 shadow-soft sm:min-h-[420px] sm:rounded-[2rem]">
-                <Image
-                  src={category.imageUrl}
-                  alt={category.name}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-                  <h2 className="font-serif text-3xl text-ivory sm:text-4xl">
-                    {category.name}
-                  </h2>
-                  <p className="mt-3 text-sm leading-6 text-ivory/68">
-                    {category.description}
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-champagne"
-                  >
-                    Ask About This Collection <ArrowRight size={15} />
-                  </Link>
-                </div>
-              </article>
+        <div className="mx-auto mt-10 max-w-md">
+          {catalogs.map((catalog) => (
+            <Reveal key={catalog.id}>
+              <CatalogCard catalog={catalog} />
             </Reveal>
           ))}
         </div>
       </section>
+      
+      <section className="luxury-container pb-16 sm:pb-20 md:pb-24">
+        <div className="glass-panel rounded-[1.7rem] p-6 text-center sm:rounded-[2.5rem] sm:p-10 md:p-16">
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs sm:tracking-[0.35em]">
+            Need Help?
+          </p>
+          <h2 className="mt-4 font-serif text-3xl text-ivory sm:text-4xl md:text-5xl">
+            Questions about our catalog or how to order?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ivory/70 sm:mt-5 sm:text-base">
+            Our catalog is hosted externally on Yupoo. Browse freely and contact us with any product inquiries or questions about ordering.
+          </p>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:mt-7 sm:flex-row sm:gap-4">
+            <a
+              href="/how-to-order"
+              className="inline-flex rounded-full border border-champagne/40 px-6 py-3 text-xs font-bold uppercase tracking-[0.22em] text-champagne hover:bg-champagne/10 sm:px-7 sm:text-sm"
+            >
+              How to Order
+            </a>
+            <a
+              href="/contact"
+              className="inline-flex rounded-full bg-gold-gradient px-6 py-3 text-xs font-bold uppercase tracking-[0.22em] text-black hover:shadow-gold sm:px-7 sm:text-sm"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
       <EditorialImageStrip images={getImageSet("shop")} title="Shop Inspiration" />
     </>
   );

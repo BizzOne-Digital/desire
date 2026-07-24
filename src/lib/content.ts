@@ -56,16 +56,16 @@ export type Testimonial = {
 };
 
 export const siteConfig = {
-  businessName: "ONLY COLLECTION",
-  editableBusinessName: "ONLY COLLECTION",
-  fallbackBusinessName: "Velorian Collection",
+  businessName: "Sport Only",
+  editableBusinessName: "Sport Only",
+  fallbackBusinessName: "Sport Only",
   phone: "(514) 709-8704",
   email: "onlycollection21@gmail.com",
   currency: "CAD",
   logoUrl: "/logo.png",
   currentWebsite: "veloriancollection.myshopify.com",
   description:
-    "A refined fashion destination designed for confidence, comfort, and timeless expression.",
+    "Your premier destination for authentic athletic merchandise. Browse our exclusive Sport Only catalog featuring premium sports products.",
   address: "",
   businessHours: "",
   socialLinks: {
