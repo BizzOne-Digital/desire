@@ -65,7 +65,7 @@ export const siteConfig = {
   logoUrl: "/logo.png",
   currentWebsite: "veloriancollection.myshopify.com",
   description:
-    "Your premier destination for authentic athletic merchandise. Browse our exclusive Sport Only catalog featuring premium sports products.",
+    "Your premier destination for authentic athletic and sports catalogs. Browse our curated collection of sneakers, tennis shoes, bags, accessories, watches, and more.",
   address: "",
   businessHours: "",
   socialLinks: {

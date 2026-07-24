@@ -6,29 +6,29 @@ import { catalogs } from "@/lib/catalogs";
 import { getImageSet } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Shop Catalog",
+  title: "Shop Catalogs",
   description:
-    "Browse our exclusive Sport Only catalog featuring premium athletic merchandise.",
+    "Browse our curated collection of premium athletic and sports catalogs. Sneakers, bags, watches, accessories, and more.",
 };
 
 export default function ShopPage() {
   return (
     <>
       <PageHero
-        eyebrow="Browse Catalog"
-        title="Sport Only Premium Collection"
-        text="Explore our exclusive catalog featuring authentic athletic merchandise. Click below to open our complete collection in a new window."
+        eyebrow="Browse Catalogs"
+        title="Premium Athletic Collections"
+        text="Explore our curated catalogs featuring authentic sneakers, bags, watches, and sports accessories. Each catalog opens in a new window for your convenience."
         image="/pages/shop-hero.png"
         cta={{ label: "How to Order", href: "/how-to-order" }}
       />
       <section className="luxury-container py-16 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="Our Catalog"
-          title="Sport Only Collection"
-          text="Browse our authentic athletic merchandise collection. Click the card below to explore our complete catalog."
+          eyebrow="Our Catalogs"
+          title="Choose a catalog to explore."
+          text="Browse authentic athletic and sports merchandise. Some catalogs require access codes - we've provided them for your convenience."
           centered
         />
-        <div className="mx-auto mt-10 max-w-md">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {catalogs.map((catalog) => (
             <Reveal key={catalog.id}>
               <CatalogCard catalog={catalog} />
@@ -43,10 +43,10 @@ export default function ShopPage() {
             Need Help?
           </p>
           <h2 className="mt-4 font-serif text-3xl text-ivory sm:text-4xl md:text-5xl">
-            Questions about our catalog or how to order?
+            Questions about our catalogs or how to order?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ivory/70 sm:mt-5 sm:text-base">
-            Our catalog is hosted externally on Yupoo. Browse freely and contact us with any product inquiries or questions about ordering.
+            Our catalogs are hosted externally on Yupoo. Browse freely and contact us with any product inquiries or questions about ordering.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:mt-7 sm:flex-row sm:gap-4">
             <a

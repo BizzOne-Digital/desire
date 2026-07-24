@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   ["Home", "/"],
-  ["Shop Catalog", "/shop"],
+  ["Shop Catalogs", "/shop"],
   ["How to Order", "/how-to-order"],
   ["About", "/about"],
   ["Contact", "/contact"],

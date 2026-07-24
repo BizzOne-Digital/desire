@@ -4,7 +4,7 @@ import { NewsletterForm } from "@/components/forms";
 import { siteConfig } from "@/lib/content";
 
 const links = [
-  ["Shop Catalog", "/shop"],
+  ["Shop Catalogs", "/shop"],
   ["How to Order", "/how-to-order"],
   ["Product Inquiry", "/product-inquiry"],
   ["About", "/about"],
@@ -38,10 +38,10 @@ export function SiteFooter({
             className="h-24 w-auto object-contain drop-shadow-[0_0_38px_rgba(215,181,109,0.28)] sm:h-32 md:h-40"
           />
           <p className="mt-4 max-w-sm text-sm leading-7 text-ivory/70 sm:mt-5">
-            Your premier destination for authentic athletic merchandise. Browse our exclusive Sport Only catalog featuring premium sports products.
+            Your premier destination for authentic athletic and sports catalogs. Browse our curated collection of premium sports merchandise.
           </p>
           <p className="mt-3 max-w-sm text-xs leading-6 text-ivory/50">
-            Our catalog is hosted on an external platform. All products are subject to availability. Contact us for current pricing and shipping information.
+            Our catalogs are hosted on external platforms. All products are subject to availability. Contact us for current pricing and shipping information.
           </p>
           <div className="mt-7 h-px w-28 bg-gold-gradient" />
         </div>
