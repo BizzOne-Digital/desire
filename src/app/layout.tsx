@@ -6,6 +6,12 @@ import { JsonLd } from "@/components/sections";
 import { SiteChrome } from "@/components/site-chrome";
 import { absoluteUrl } from "@/lib/utils";
 import { getSiteSettings } from "@/lib/store";
+import { checkSmtpConfig } from "@/lib/smtp-check";
+
+// Check SMTP configuration on server startup
+if (typeof window === "undefined") {
+  checkSmtpConfig();
+}
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],

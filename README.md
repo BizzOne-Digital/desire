@@ -36,6 +36,25 @@ npm run dev
 
 Open `http://localhost:3000`. In MongoDB Compass, connect to `mongodb://127.0.0.1:27017` and open the `only_collection` database after seeding.
 
+## Email / SMTP Setup
+
+The site sends email notifications for contact forms and product inquiries.
+
+### Quick Gmail Setup:
+1. Enable 2-Factor Authentication on your Google Account
+2. Generate App Password: https://myaccount.google.com/apppasswords
+3. Add to `.env`:
+```env
+SMTP_HOST="smtp.gmail.com"
+SMTP_PORT="587"
+SMTP_SECURE="false"
+SMTP_USER="onlycollection21@gmail.com"
+SMTP_PASSWORD="your-16-char-app-password"
+NOTIFICATION_EMAIL="onlycollection21@gmail.com"
+```
+
+📖 **Full SMTP Setup Guide**: See `SMTP_SETUP.md` for detailed instructions and alternative providers.
+
 ## Admin Login
 
 After seeding:

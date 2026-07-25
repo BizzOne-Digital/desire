@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { sendEmail, emailTemplates } from "@/lib/email";
 
 const inquirySchema = z.object({
   name: z.string().min(2),
@@ -18,23 +19,45 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = inquirySchema.parse(body);
 
-    // In a real application, you would:
-    // 1. Save to database
-    // 2. Send email notification
-    // 3. Integrate with CRM or notification system
-
     console.log("Product Inquiry Received:", data);
 
-    // For now, we'll just return success
-    // You can integrate with email services like SendGrid, Resend, etc.
+    // Prepare product details for email
+    const productDetailsText = `
+${data.productDetails}
+${data.quantity ? `\nQuantity: ${data.quantity}` : ""}
+${data.size ? `\nSize: ${data.size}` : ""}
+${data.color ? `\nColor: ${data.color}` : ""}
+    `.trim();
+
+    // Send email notification
+    const emailTemplate = emailTemplates.productInquiry({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      catalogName: data.catalogName,
+      productDetails: productDetailsText,
+      additionalInfo: data.additionalNotes,
+    });
+    
+    const notificationEmail = process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER;
+    
+    if (notificationEmail) {
+      await sendEmail({
+        to: notificationEmail,
+        subject: emailTemplate.subject,
+        html: emailTemplate.html,
+        text: emailTemplate.text,
+      });
+    }
+
     return NextResponse.json(
-      { message: "Inquiry submitted successfully" },
+      { message: "Inquiry submitted successfully! We'll respond within 24 hours." },
       { status: 200 },
     );
   } catch (error) {
     console.error("Inquiry submission error:", error);
     return NextResponse.json(
-      { error: "Failed to submit inquiry" },
+      { error: "Failed to submit inquiry. Please try again." },
       { status: 500 },
     );
   }
