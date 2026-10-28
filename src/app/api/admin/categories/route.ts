@@ -3,6 +3,7 @@ import { getAdminSession } from "@/lib/auth";
 import { categories } from "@/lib/content";
 import { hasDatabase, prisma } from "@/lib/db";
 import { getMongoDb, ObjectId } from "@/lib/mongodb";
+import { deleteReplacedUploads } from "@/lib/uploads";
 import { categorySchema } from "@/lib/validators";
 
 async function requireAdmin() {
@@ -75,10 +76,12 @@ export async function PUT(request: Request) {
   }
 
   const db = await getMongoDb();
+  const previous = await db.collection("Category").findOne({ _id: new ObjectId(id) });
   await db.collection("Category").updateOne(
     { _id: new ObjectId(id) },
     { $set: { ...parsed.data, updatedAt: new Date() } },
   );
+  await deleteReplacedUploads(previous?.imageUrl, parsed.data.imageUrl);
 
   return NextResponse.json({ category: { id, ...parsed.data } });
 }
@@ -103,7 +106,8 @@ export async function DELETE(request: Request) {
   const db = await getMongoDb();
   const categoryId = new ObjectId(id);
   await db.collection("Product").updateMany({ categoryId }, { $unset: { categoryId: "" } });
-  await db.collection("Category").deleteOne({ _id: categoryId });
+  const removed = await db.collection("Category").findOneAndDelete({ _id: categoryId });
+  await deleteReplacedUploads(removed?.imageUrl, null);
 
   return NextResponse.json({ ok: true });
 }

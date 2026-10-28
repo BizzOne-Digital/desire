@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/policy-page";
-import { policyContent } from "@/lib/content";
+import { getContent } from "@/lib/content-store";
 
 export const metadata: Metadata = {
   title: "Terms and Conditions",
-  description: "Terms and conditions for ONLY COLLECTION."
 };
 
-export default function TermsPage() {
+export default async function Page() {
+  const c = await getContent();
+
   return (
     <PolicyPage
       eyebrow="Terms"
       title="Terms and Conditions"
-      text="Clear expectations for using the website and purchasing products."
-      body={policyContent.terms}
-      image="/pages/about-hero.png"
-      imageSeed="terms"
+      text={c.t("terms.hero.text")}
+      body={c.t("terms.body")}
+      image={c.t("terms.hero.image")}
+      stripImages={c.strip("terms")}
+      stripTitle={c.t("terms.strip.title")}
     />
   );
 }

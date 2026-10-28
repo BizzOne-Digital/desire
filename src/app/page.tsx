@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import {
@@ -8,17 +8,28 @@ import {
 } from "@/components/sections";
 import { Reveal } from "@/components/motion";
 import { CatalogCard } from "@/components/catalog-card";
-import { editorialImages, services, galleryItems } from "@/lib/content";
-import { getFeaturedCatalogs } from "@/lib/catalogs";
+import { getContent } from "@/lib/content-store";
+import { getCatalogs, getGalleryItems, getServices } from "@/lib/store";
 
-export default function HomePage() {
-  const featuredCatalogs = getFeaturedCatalogs().slice(0, 3);
+export default async function HomePage() {
+  const [c, catalogs, services, galleryItems] = await Promise.all([
+    getContent(),
+    getCatalogs(),
+    getServices(),
+    getGalleryItems(),
+  ]);
+  const featuredCatalogs = catalogs.filter((catalog) => catalog.featured).slice(0, 3);
+  const pills = c
+    .t("home.story.pills")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
 
   return (
     <>
       <section className="home-hero relative min-h-[100svh] overflow-hidden bg-black pt-[72px] sm:pt-20 md:pt-[100px]">
         <Image
-          src="/hero-background.png"
+          src={c.t("home.hero.image")}
           alt="Black and gold luxury product hero"
           fill
           priority
@@ -33,31 +44,31 @@ export default function HomePage() {
               <span className="text-base leading-none text-champagne drop-shadow-[0_0_12px_rgba(215,181,109,0.9)] sm:text-lg">
                 ✦
               </span>
-              Premium Athletic Catalogs
+              {c.t("home.hero.kicker")}
             </div>
             <h1 className="home-hero-title mx-auto mt-5 max-w-[21rem] text-center font-serif text-[clamp(2.35rem,11vw,3.05rem)] uppercase leading-[0.92] tracking-[0.005em] text-ivory sm:mx-0 sm:max-w-none sm:text-left sm:text-5xl md:mt-7 md:text-6xl lg:text-[3.75rem] xl:text-[4.35rem]">
-              <span className="block">Authentic</span>
-              <span className="block">Sports</span>
-              <span className="block">Merchandise</span>
+              <span className="block">{c.t("home.hero.line1")}</span>
+              <span className="block">{c.t("home.hero.line2")}</span>
+              <span className="block">{c.t("home.hero.line3")}</span>
               <span className="gold-text block overflow-visible pr-[0.12em] pb-[0.08em]">
-                Sport Only.
+                {c.t("home.hero.accent")}
               </span>
             </h1>
             <p className="home-hero-text mx-auto mt-5 max-w-[32ch] text-center text-[13px] leading-6 text-ivory/78 sm:mx-0 sm:max-w-[520px] sm:text-left sm:text-sm md:mt-6 md:text-base md:leading-7">
-              Browse our curated catalogs featuring sneakers, bags, watches, accessories, and premium athletic gear from trusted suppliers.
+              {c.t("home.hero.text")}
             </p>
             <div className="home-hero-actions mx-auto mt-6 flex w-full max-w-[21rem] flex-col gap-3 sm:mx-0 sm:max-w-sm sm:flex-row sm:gap-5 md:mt-7">
               <Link
                 href="/shop"
                 className="home-hero-button inline-flex w-full min-w-0 items-center justify-center gap-3 bg-gold-gradient px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black shadow-gold transition hover:-translate-y-1 sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]"
               >
-                Browse Catalogs <ArrowRight size={15} />
+                {c.t("home.hero.cta1")} <ArrowRight size={15} />
               </Link>
               <Link
                 href="/how-to-order"
                 className="home-hero-button inline-flex w-full min-w-0 items-center justify-center gap-3 border border-champagne/70 bg-black/20 px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] text-champagne transition hover:bg-champagne hover:text-black sm:min-w-44 sm:px-7 sm:py-4 sm:text-[11px]"
               >
-                How to Order <ArrowRight size={15} />
+                {c.t("home.hero.cta2")} <ArrowRight size={15} />
               </Link>
             </div>
           </Reveal>
@@ -67,9 +78,9 @@ export default function HomePage() {
       <section className="luxury-container relative overflow-hidden py-16 sm:py-20 md:py-24">
         <div className="absolute -right-20 top-8 h-48 w-48 rounded-full border border-champagne/10 sm:-right-28 sm:h-72 sm:w-72" />
         <SectionHeading
-          eyebrow="Featured Catalogs"
-          title="Start exploring our premium collections"
-          text="Browse authentic athletic merchandise from verified suppliers. Each catalog opens in a new window for your convenience."
+          eyebrow={c.t("home.catalogs.eyebrow")}
+          title={c.t("home.catalogs.title")}
+          text={c.t("home.catalogs.text")}
         />
         <div className="grid gap-5 md:grid-cols-3">
           {featuredCatalogs.map((catalog) => (
@@ -83,7 +94,7 @@ export default function HomePage() {
             href="/shop"
             className="inline-flex items-center gap-3 rounded-full border border-champagne/40 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-ivory hover:bg-champagne/10 sm:px-8 sm:text-sm sm:tracking-[0.22em]"
           >
-            View All Catalogs <ArrowRight size={16} />
+            {c.t("home.catalogs.button")} <ArrowRight size={16} />
           </Link>
         </div>
       </section>
@@ -92,7 +103,7 @@ export default function HomePage() {
         <Reveal>
           <div className="luxury-frame relative aspect-[4/5] overflow-hidden rounded-[1.6rem] border border-champagne/18 shadow-gold sm:rounded-[2.4rem]">
             <Image
-              src="/pages/about-hero.png"
+              src={c.t("home.story.image")}
               alt="Elegant brand story editorial"
               fill
               className="object-cover"
@@ -102,7 +113,7 @@ export default function HomePage() {
         </Reveal>
         <Reveal delay={0.1}>
           <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-8 sm:gap-3">
-            {["Curated", "Refined", "Elevated", "Timeless"].map((item) => (
+            {pills.map((item) => (
               <div
                 key={item}
                 className="rounded-full border border-champagne/18 bg-white/[0.035] px-3 py-2 text-center text-[9px] uppercase tracking-[0.16em] text-ivory/60 sm:px-4 sm:text-xs sm:tracking-[0.2em]"
@@ -112,28 +123,27 @@ export default function HomePage() {
             ))}
           </div>
           <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs sm:tracking-[0.35em]">
-            Brand Story
+            {c.t("home.story.eyebrow")}
           </p>
           <h2 className="mt-4 font-serif text-4xl leading-tight text-ivory sm:text-5xl md:text-7xl">
-            Fashion designed to feel personal and polished.
+            {c.t("home.story.title")}
           </h2>
           <p className="mt-5 text-sm leading-7 text-ivory/70 sm:text-lg sm:leading-8">
-            ONLY COLLECTION focuses on elevated style, careful presentation, and
-            a calm shopping experience built around confidence and clarity.
+            {c.t("home.story.text")}
           </p>
           <Link
             href="/about"
             className="mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-champagne sm:text-sm sm:tracking-[0.24em]"
           >
-            Explore Brand <ArrowRight size={16} />
+            {c.t("home.story.link")} <ArrowRight size={16} />
           </Link>
         </Reveal>
       </section>
 
       <section className="luxury-container py-14 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="Services"
-          title="Support shaped around a refined customer experience."
+          eyebrow={c.t("home.services.eyebrow")}
+          title={c.t("home.services.title")}
           centered
         />
         <div className="grid gap-5 md:grid-cols-4">
@@ -162,7 +172,7 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden py-16 sm:py-20 md:py-28">
         <Image
-          src="/pages/gallery-hero.png"
+          src={c.t("home.quote.image")}
           alt="Luxury statement"
           fill
           className="object-cover opacity-45"
@@ -171,15 +181,15 @@ export default function HomePage() {
         <Reveal className="luxury-container relative z-10 max-w-4xl text-center">
           <div className="mx-auto mb-6 h-px w-24 bg-gold-gradient sm:mb-8 sm:w-32" />
           <blockquote className="font-serif text-3xl leading-tight text-ivory sm:text-5xl md:text-7xl">
-            “Designed to make you feel extraordinary.”
+            {c.t("home.quote.text")}
           </blockquote>
         </Reveal>
       </section>
 
       <section className="luxury-container py-14 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="Gallery"
-          title="A refined visual world."
+          eyebrow={c.t("home.gallery.eyebrow")}
+          title={c.t("home.gallery.title")}
           centered
         />
         <GalleryGrid items={galleryItems.slice(0, 6)} />
@@ -188,7 +198,7 @@ export default function HomePage() {
             href="/gallery"
             className="inline-flex items-center gap-3 rounded-full border border-champagne/40 px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-ivory hover:bg-champagne/10 sm:px-7 sm:text-sm sm:tracking-[0.22em]"
           >
-            View Gallery <ArrowRight size={16} />
+            {c.t("home.gallery.button")} <ArrowRight size={16} />
           </Link>
         </div>
       </section>
@@ -196,23 +206,25 @@ export default function HomePage() {
       <section className="luxury-container pb-16 sm:pb-20 md:pb-24">
         <div className="glass-panel rounded-[1.7rem] p-6 text-center sm:rounded-[2.5rem] sm:p-10 md:p-16">
           <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs sm:tracking-[0.35em]">
-            Stay Connected
+            {c.t("home.contact.eyebrow")}
           </p>
           <h2 className="mt-4 font-serif text-4xl text-ivory sm:text-5xl md:text-7xl">
-            Reach out for styling guidance and collection questions.
+            {c.t("home.contact.title")}
           </h2>
           <Link
             href="/contact"
             className="mt-7 inline-flex rounded-full bg-gold-gradient px-7 py-3.5 text-xs font-bold uppercase tracking-[0.22em] text-black sm:mt-8 sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.24em]"
           >
-            Contact Us
+            {c.t("home.contact.button")}
           </Link>
         </div>
       </section>
 
       <EditorialImageStrip
-        images={editorialImages}
-        title="Homepage Editorial Set"
+        images={c.homeStrip()}
+        title={c.t("home.strip.title")}
+        eyebrow={c.t("strip.eyebrow")}
+        text={c.t("strip.text")}
       />
     </>
   );

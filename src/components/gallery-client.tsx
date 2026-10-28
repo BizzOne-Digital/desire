@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import { ExternalLink, Lock, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import type { Catalog } from "@/lib/catalogs";

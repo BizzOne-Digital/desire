@@ -1,9 +1,7 @@
 import {
   categories,
-  galleryItems,
   pricingPlans,
   products,
-  services,
   siteConfig,
   testimonials,
   type Category,
@@ -12,6 +10,7 @@ import {
   type Product,
   type Service
 } from "@/lib/content";
+import { getCatalogList, getGalleryList, getServicesList } from "@/lib/content-store";
 import { hasDatabase, prisma } from "@/lib/db";
 
 type DbProductImage = {
@@ -139,22 +138,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function getServices(): Promise<Service[]> {
-  if (!hasDatabase) {
-    return services;
-  }
-
-  try {
-    const rows = await prisma.service.findMany({ orderBy: { sortOrder: "asc" } });
-    return rows.map((service) => ({
-      title: service.title,
-      slug: service.slug,
-      description: service.description,
-      imageUrl: service.imageUrl ?? services[0].imageUrl,
-      features: service.features
-    }));
-  } catch {
-    return services;
-  }
+  return getServicesList();
 }
 
 export async function getPricingPlans(): Promise<PricingPlan[]> {
@@ -170,21 +154,11 @@ export async function getPricingPlans(): Promise<PricingPlan[]> {
 }
 
 export async function getGalleryItems(): Promise<GalleryItem[]> {
-  if (!hasDatabase) {
-    return galleryItems;
-  }
+  return getGalleryList();
+}
 
-  try {
-    const rows = await prisma.galleryItem.findMany({ orderBy: { sortOrder: "asc" } });
-    return rows.map((item) => ({
-      title: item.title,
-      description: item.description ?? "",
-      imageUrl: item.imageUrl,
-      category: item.category
-    }));
-  } catch {
-    return galleryItems;
-  }
+export async function getCatalogs() {
+  return getCatalogList();
 }
 
 export async function getTestimonials() {

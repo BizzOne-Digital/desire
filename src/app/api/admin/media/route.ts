@@ -1,31 +1,46 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
+import { hasDatabase } from "@/lib/db";
+import { UPLOAD_URL_PREFIX, deleteUploadByUrl, getUploadCollection } from "@/lib/uploads";
 
-const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-export async function POST(request: Request) {
-  const session = await getAdminSession();
-  if (!session) {
+export async function GET() {
+  if (!(await getAdminSession())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!hasDatabase) {
+    return NextResponse.json({ items: [] });
+  }
+
+  const collection = await getUploadCollection();
+  const rows = await collection
+    .find({}, { projection: { data: 0 } })
+    .sort({ createdAt: -1 })
+    .limit(200)
+    .toArray();
+
+  return NextResponse.json({
+    items: rows.map((row) => ({
+      url: `${UPLOAD_URL_PREFIX}${row.folder}/${row.filename}`,
+      folder: row.folder,
+      filename: row.filename,
+      size: row.size,
+      createdAt: row.createdAt
+    }))
+  });
+}
+
+export async function DELETE(request: Request) {
+  if (!(await getAdminSession())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const form = await request.formData();
-  const file = form.get("file");
-  if (!(file instanceof File)) {
-    return NextResponse.json({ error: "No file uploaded." }, { status: 400 });
+  const url = new URL(request.url).searchParams.get("url");
+  const deleted = await deleteUploadByUrl(url);
+  if (!deleted) {
+    return NextResponse.json({ error: "Image not found." }, { status: 404 });
   }
-  if (!allowedTypes.includes(file.type) || file.size > 5 * 1024 * 1024) {
-    return NextResponse.json({ error: "Upload a JPG, PNG, WEBP, or GIF under 5MB." }, { status: 400 });
-  }
-
-  if (!process.env.CLOUDINARY_CLOUD_NAME) {
-    return NextResponse.json({
-      error: "Cloudinary credentials are required for production uploads.",
-      requiredEnv: ["CLOUDINARY_CLOUD_NAME", "CLOUDINARY_API_KEY", "CLOUDINARY_API_SECRET"]
-    }, { status: 501 });
-  }
-
-  return NextResponse.json({
-    error: "Cloudinary upload adapter is ready for credentials. Add the keys and connect the upload SDK here."
-  }, { status: 501 });
+  return NextResponse.json({ ok: true });
 }

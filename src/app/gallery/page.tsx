@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GalleryClient } from "@/components/gallery-client";
 import { PageHero } from "@/components/sections";
+import { getContent } from "@/lib/content-store";
 import { getGalleryItems } from "@/lib/store";
 
 export const metadata: Metadata = {
@@ -10,15 +11,15 @@ export const metadata: Metadata = {
 };
 
 export default async function GalleryPage() {
-  const items = await getGalleryItems();
+  const [c, items] = await Promise.all([getContent(), getGalleryItems()]);
 
   return (
     <>
       <PageHero
-        eyebrow="Gallery"
-        title="A refined visual world."
-        text="Explore fashion and lifestyle imagery that supports the ONLY COLLECTION black-and-gold aesthetic."
-        image="/pages/gallery-hero.png"
+        eyebrow={c.t("gallery.hero.eyebrow")}
+        title={c.t("gallery.hero.title")}
+        text={c.t("gallery.hero.text")}
+        image={c.t("gallery.hero.image")}
       />
       <GalleryClient items={items} />
     </>

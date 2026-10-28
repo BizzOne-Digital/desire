@@ -5,8 +5,12 @@ import "./globals.css";
 import { JsonLd } from "@/components/sections";
 import { SiteChrome } from "@/components/site-chrome";
 import { absoluteUrl } from "@/lib/utils";
+import { getContent } from "@/lib/content-store";
 import { getSiteSettings } from "@/lib/store";
 import { checkSmtpConfig } from "@/lib/smtp-check";
+
+// Content is edited from the admin portal, so pages must render per request.
+export const dynamic = "force-dynamic";
 
 // Check SMTP configuration on server startup
 if (typeof window === "undefined") {
@@ -63,7 +67,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const settings = await getSiteSettings();
+  const [settings, content] = await Promise.all([getSiteSettings(), getContent()]);
 
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
@@ -83,6 +87,15 @@ export default async function RootLayout({
           settings={{
             businessName: settings.businessName,
             logoUrl: settings.logoUrl,
+          }}
+          footer={{
+            about: content.t("footer.about"),
+            notice: content.t("footer.notice"),
+            newsletter: content.t("footer.newsletter"),
+            tagline: content.t("footer.tagline"),
+            email: settings.email,
+            phone: settings.phone,
+            socialLinks: settings.socialLinks ?? {},
           }}
         >
           {children}

@@ -1,7 +1,8 @@
 import crypto from "crypto";
 import { cookies } from "next/headers";
+import { adminCookieName } from "@/lib/auth-edge";
 
-const COOKIE_NAME = "only_admin_session";
+const COOKIE_NAME = adminCookieName;
 const SESSION_TTL_SECONDS = 60 * 60 * 8;
 
 type SessionPayload = {
@@ -11,7 +12,11 @@ type SessionPayload = {
 };
 
 function getSecret() {
-  return process.env.AUTH_SECRET || "development-only-change-this-secret";
+  const secret = process.env.AUTH_SECRET;
+  if (!secret && process.env.NODE_ENV === "production") {
+    throw new Error("AUTH_SECRET must be set in production.");
+  }
+  return secret || "development-only-change-this-secret";
 }
 
 function sign(value: string) {
@@ -70,4 +75,4 @@ export async function clearAdminSession() {
   cookieStore.delete(COOKIE_NAME);
 }
 
-export const adminCookieName = COOKIE_NAME;
+export { adminCookieName };

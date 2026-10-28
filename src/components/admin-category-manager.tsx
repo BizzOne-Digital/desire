@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import { useState } from "react";
 import { toast } from "sonner";
+import { AdminImageField } from "@/components/admin-image-field";
 import type { Category } from "@/lib/content";
 import { slugify } from "@/lib/utils";
 
@@ -137,6 +138,8 @@ function CategoryForm({
   onChangeName: (name: string) => void;
   onSaved: (category: EditableCategory) => void;
 }) {
+  const [imageUrl, setImageUrl] = useState(category.imageUrl);
+
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
@@ -144,7 +147,7 @@ function CategoryForm({
       name: String(form.get("name")),
       slug: String(form.get("slug")),
       description: String(form.get("description")),
-      imageUrl: String(form.get("imageUrl")),
+      imageUrl,
       sortOrder: Number(form.get("sortOrder") || 0),
     };
 
@@ -207,12 +210,7 @@ function CategoryForm({
         placeholder="Description"
         defaultValue={category.description}
       />
-      <input
-        name="imageUrl"
-        className={fieldClass}
-        placeholder="Image URL or media item"
-        defaultValue={category.imageUrl}
-      />
+      <AdminImageField label="Category image" value={imageUrl} folder="products" onChange={setImageUrl} />
       <input
         name="sortOrder"
         className={fieldClass}

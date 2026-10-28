@@ -3,6 +3,7 @@ import { getAdminSession } from "@/lib/auth";
 import { hasDatabase, prisma } from "@/lib/db";
 import { getMongoDb, ObjectId } from "@/lib/mongodb";
 import { products } from "@/lib/content";
+import { deleteReplacedUploads } from "@/lib/uploads";
 import { productSchema } from "@/lib/validators";
 
 async function requireAdmin() {
@@ -99,7 +100,9 @@ export async function PUT(request: Request) {
       }
     }
   );
+  const previousImages = await db.collection("ProductImage").find({ productId }).toArray();
   await db.collection("ProductImage").deleteMany({ productId });
+  await deleteReplacedUploads(previousImages.map((image) => image.url), images.map((image) => image.url));
   if (images.length) {
     await db.collection("ProductImage").insertMany(
       images.map((image, index) => ({
@@ -133,6 +136,8 @@ export async function DELETE(request: Request) {
   }
   const db = await getMongoDb();
   const productId = new ObjectId(id);
+  const removedImages = await db.collection("ProductImage").find({ productId }).toArray();
+  await deleteReplacedUploads(removedImages.map((image) => image.url), null);
   await db.collection("ProductImage").deleteMany({ productId });
   await db.collection("ProductVariant").deleteMany({ productId });
   await db.collection("Product").deleteOne({ _id: productId });

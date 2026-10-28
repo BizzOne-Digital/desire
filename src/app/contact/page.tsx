@@ -5,8 +5,8 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/sections";
-import { siteConfig } from "@/lib/content";
-import { getImageSet } from "@/lib/utils";
+import { getContent } from "@/lib/content-store";
+import { getSiteSettings } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -14,38 +14,42 @@ export const metadata: Metadata = {
     "Contact ONLY COLLECTION for collection questions and styling support.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const [c, settings] = await Promise.all([getContent(), getSiteSettings()]);
+
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="We would love to hear from you."
-        text="Reach out for collection questions, styling guidance, or general brand support."
-        image="/pages/contact-hero.png"
+        eyebrow={c.t("contact.hero.eyebrow")}
+        title={c.t("contact.hero.title")}
+        text={c.t("contact.hero.text")}
+        image={c.t("contact.hero.image")}
       />
       <section className="luxury-container grid gap-10 py-24 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
           <SectionHeading
-            eyebrow="Reach Us"
-            title="Clear support for every message."
-            text="Share your question and we will respond with helpful, carefully considered guidance."
+            eyebrow={c.t("contact.reach.eyebrow")}
+            title={c.t("contact.reach.title")}
+            text={c.t("contact.reach.text")}
           />
           <div className="grid gap-4 text-ivory/72">
             <p>
-              <span className="text-champagne">Email:</span> {siteConfig.email}
+              <span className="text-champagne">Email:</span> {settings.email}
             </p>
             <p>
-              <span className="text-champagne">Phone:</span> {siteConfig.phone}
+              <span className="text-champagne">Phone:</span> {settings.phone}
             </p>
-            {siteConfig.businessHours && <p>{siteConfig.businessHours}</p>}
-            {siteConfig.address && <p>{siteConfig.address}</p>}
+            {settings.businessHours && <p>{settings.businessHours}</p>}
+            {settings.address && <p>{settings.address}</p>}
           </div>
         </div>
         <ContactForm />
       </section>
       <EditorialImageStrip
-        images={getImageSet("contact")}
-        title="Contact Editorial Set"
+        images={c.strip("contact")}
+        title={c.t("contact.strip.title")}
+        eyebrow={c.t("strip.eyebrow")}
+        text={c.t("strip.text")}
       />
     </>
   );

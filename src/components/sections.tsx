@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion";
@@ -66,17 +66,21 @@ export function SectionHeading({
 
 export function EditorialImageStrip({
   images,
-  title = "Visual Texture"
+  title = "Visual Texture",
+  eyebrow = "Imagery",
+  text = "Each page includes rich editorial imagery so the experience feels visual, premium, and complete across desktop and mobile."
 }: {
   images: string[];
   title?: string;
+  eyebrow?: string;
+  text?: string;
 }) {
   return (
     <section className="luxury-container py-14 sm:py-20">
       <SectionHeading
-        eyebrow="Imagery"
+        eyebrow={eyebrow}
         title={title}
-        text="Each page includes rich editorial imagery so the experience feels visual, premium, and complete across desktop and mobile."
+        text={text}
         centered
       />
       <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-5">

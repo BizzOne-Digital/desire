@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/policy-page";
-import { policyContent } from "@/lib/content";
+import { getContent } from "@/lib/content-store";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy policy for ONLY COLLECTION."
 };
 
-export default function PrivacyPolicyPage() {
+export default async function Page() {
+  const c = await getContent();
+
   return (
     <PolicyPage
       eyebrow="Privacy"
       title="Privacy Policy"
-      text="How customer information is handled, protected, and used."
-      body={policyContent.privacy}
-      image="/pages/about-hero.png"
-      imageSeed="privacy"
+      text={c.t("privacy.hero.text")}
+      body={c.t("privacy.body")}
+      image={c.t("privacy.hero.image")}
+      stripImages={c.strip("privacy")}
+      stripTitle={c.t("privacy.strip.title")}
     />
   );
 }

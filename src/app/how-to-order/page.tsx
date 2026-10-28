@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import Link from "next/link";
 import { ArrowRight, MessageCircle, FileText, Mail, CheckCircle } from "lucide-react";
 import { PageHero, SectionHeading } from "@/components/sections";
 import { Reveal } from "@/components/motion";
-import { siteConfig } from "@/lib/content";
+import { getContent } from "@/lib/content-store";
+import { getSiteSettings } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "How to Order",
@@ -12,77 +13,36 @@ export const metadata: Metadata = {
     "Learn how to browse our catalogs and place an inquiry for authentic athletic merchandise from Sport Only.",
 };
 
-const steps = [
-  {
-    number: "01",
-    icon: FileText,
-    title: "Browse Our Catalogs",
-    description:
-      "Explore our curated Yupoo catalogs featuring sneakers, bags, watches, accessories, and more. Some catalogs require access codes - we provide them for your convenience.",
-    details: [
-      "Visit our Shop Catalogs page",
-      "Click on any catalog to open it in a new window",
-      "Use provided access codes for password-protected catalogs",
-      "Browse products and note items you're interested in",
-    ],
-  },
-  {
-    number: "02",
-    icon: MessageCircle,
-    title: "Note Product Details",
-    description:
-      "When you find products you like, save the important details. You'll need this information when contacting us.",
-    details: [
-      "Product name or description",
-      "Yupoo album link or product code",
-      "Size, color, or variant preferences",
-      "Quantity needed",
-    ],
-  },
-  {
-    number: "03",
-    icon: Mail,
-    title: "Contact Us",
-    description:
-      "Reach out to us with your product inquiry. We'll provide current pricing, availability, and shipping information.",
-    details: [
-      `Email us at ${siteConfig.email}`,
-      `Call or text ${siteConfig.phone}`,
-      "Use our Product Inquiry form",
-      "Include all product details from Step 2",
-    ],
-  },
-  {
-    number: "04",
-    icon: CheckCircle,
-    title: "Complete Your Order",
-    description:
-      "We'll work with you to confirm details, arrange payment, and coordinate delivery of your authentic athletic merchandise.",
-    details: [
-      "Receive pricing and availability confirmation",
-      "Discuss shipping options and timeline",
-      "Complete payment through agreed method",
-      "Track your order until delivery",
-    ],
-  },
-];
+const stepIcons = [FileText, MessageCircle, Mail, CheckCircle];
 
-export default function HowToOrderPage() {
+export default async function HowToOrderPage() {
+  const [c, settings] = await Promise.all([getContent(), getSiteSettings()]);
+  const steps = stepIcons.map((icon, index) => ({
+    number: `0${index + 1}`,
+    icon,
+    title: c.t(`order.step${index + 1}.title`),
+    description: c.t(`order.step${index + 1}.text`),
+    details: c
+      .lines(`order.step${index + 1}.details`)
+      .map((line) => line.replaceAll("{email}", settings.email).replaceAll("{phone}", settings.phone)),
+  }));
+  const notes = [1, 2, 3].map((index) => [c.t(`order.info.${index}.title`), c.t(`order.info.${index}.text`)]);
+
   return (
     <>
       <PageHero
-        eyebrow="Ordering Process"
-        title="How to Order from Sport Only"
-        text="Our catalog-based ordering process ensures you get authentic athletic merchandise with personalized service. Browse, inquire, and order with confidence."
-        image="/pages/services-hero.png"
-        cta={{ label: "Browse Catalogs", href: "/shop" }}
+        eyebrow={c.t("order.hero.eyebrow")}
+        title={c.t("order.hero.title")}
+        text={c.t("order.hero.text")}
+        image={c.t("order.hero.image")}
+        cta={{ label: c.t("order.hero.cta"), href: "/shop" }}
       />
 
       <section className="luxury-container py-16 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="Simple Process"
-          title="Four easy steps to get your authentic gear"
-          text="Our streamlined ordering process connects you directly with premium athletic merchandise."
+          eyebrow={c.t("order.steps.eyebrow")}
+          title={c.t("order.steps.title")}
+          text={c.t("order.steps.text")}
           centered
         />
 
@@ -134,36 +94,18 @@ export default function HowToOrderPage() {
           <Reveal>
             <div className="glass-panel rounded-[1.7rem] p-6 sm:rounded-[2rem] sm:p-8 lg:p-10">
               <h2 className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs">
-                Important Information
+                {c.t("order.info.eyebrow")}
               </h2>
               <h3 className="mt-4 font-serif text-3xl text-ivory sm:text-4xl">
-                Before You Order
+                {c.t("order.info.title")}
               </h3>
               <div className="mt-6 grid gap-4">
-                <div>
-                  <h4 className="text-sm font-semibold text-ivory">
-                    External Catalogs
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-ivory/70">
-                    Our catalogs are hosted on Yupoo, an external platform. We don&apos;t control inventory or pricing directly - we act as your connection to verified suppliers.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-ivory">
-                    Pricing & Availability
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-ivory/70">
-                    Prices and stock levels change frequently. Contact us for current pricing, availability, and shipping costs before placing your order.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-ivory">
-                    Delivery Timeline
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-ivory/70">
-                    Most orders ship within 3-7 business days, with delivery taking 10-21 days depending on your location and selected shipping method.
-                  </p>
-                </div>
+                {notes.map(([title, text]) => (
+                  <div key={title}>
+                    <h4 className="text-sm font-semibold text-ivory">{title}</h4>
+                    <p className="mt-2 text-sm leading-6 text-ivory/70">{text}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </Reveal>
@@ -171,13 +113,13 @@ export default function HowToOrderPage() {
           <Reveal delay={0.1}>
             <div className="glass-panel rounded-[1.7rem] p-6 sm:rounded-[2rem] sm:p-8 lg:p-10">
               <h2 className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs">
-                Need Help?
+                {c.t("order.help.eyebrow")}
               </h2>
               <h3 className="mt-4 font-serif text-3xl text-ivory sm:text-4xl">
-                We&apos;re Here to Assist
+                {c.t("order.help.title")}
               </h3>
               <p className="mt-4 text-base leading-7 text-ivory/70">
-                Have questions about a product, catalog, or the ordering process? Our team is ready to help.
+                {c.t("order.help.text")}
               </p>
               <div className="mt-6 grid gap-3">
                 <div className="rounded-lg border border-champagne/20 bg-white/[0.02] p-4">
@@ -185,10 +127,10 @@ export default function HowToOrderPage() {
                     Email
                   </p>
                   <a
-                    href={`mailto:${siteConfig.email}`}
+                    href={`mailto:${settings.email}`}
                     className="mt-1 block text-sm font-medium text-ivory hover:text-champagne"
                   >
-                    {siteConfig.email}
+                    {settings.email}
                   </a>
                 </div>
                 <div className="rounded-lg border border-champagne/20 bg-white/[0.02] p-4">
@@ -196,10 +138,10 @@ export default function HowToOrderPage() {
                     Phone
                   </p>
                   <a
-                    href={`tel:${siteConfig.phone}`}
+                    href={`tel:${settings.phone}`}
                     className="mt-1 block text-sm font-medium text-ivory hover:text-champagne"
                   >
-                    {siteConfig.phone}
+                    {settings.phone}
                   </a>
                 </div>
               </div>
@@ -227,7 +169,7 @@ export default function HowToOrderPage() {
           <div className="relative overflow-hidden rounded-[1.7rem] sm:rounded-[2.5rem]">
             <div className="absolute inset-0">
               <Image
-                src="/pages/contact-hero.png"
+                src={c.t("order.cta.image")}
                 alt="Contact Sport Only"
                 fill
                 className="object-cover opacity-40"
@@ -236,19 +178,19 @@ export default function HowToOrderPage() {
             </div>
             <div className="relative z-10 px-6 py-12 text-center sm:px-10 sm:py-16 md:px-16 md:py-20">
               <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-champagne sm:text-xs">
-                Ready to Start?
+                {c.t("order.cta.eyebrow")}
               </p>
               <h2 className="mt-4 font-serif text-4xl text-ivory sm:text-5xl md:text-6xl">
-                Browse Our Catalogs
+                {c.t("order.cta.title")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-ivory/70 sm:text-base">
-                Explore authentic athletic merchandise from verified suppliers. Find your perfect gear and reach out to place your order.
+                {c.t("order.cta.text")}
               </p>
               <Link
                 href="/shop"
                 className="mt-7 inline-flex items-center gap-3 rounded-full bg-gold-gradient px-8 py-4 text-xs font-bold uppercase tracking-[0.22em] text-black hover:shadow-gold sm:text-sm"
               >
-                View Catalogs <ArrowRight size={16} />
+                {c.t("order.cta.button")} <ArrowRight size={16} />
               </Link>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import Link from "next/link";
 import {
   EditorialImageStrip,
@@ -7,8 +7,8 @@ import {
   SectionHeading,
 } from "@/components/sections";
 import { Reveal } from "@/components/motion";
-import { services } from "@/lib/content";
-import { getImageSet } from "@/lib/utils";
+import { getContent } from "@/lib/content-store";
+import { getServices } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -16,20 +16,27 @@ export const metadata: Metadata = {
     "Styling guidance, personal support, and a refined customer experience from ONLY COLLECTION.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const [c, services] = await Promise.all([getContent(), getServices()]);
+  const steps = [1, 2, 3, 4].map((index) => c.t(`services.process.${index}`));
+  const faqs = [1, 2, 3].map((index) => [
+    c.t(`services.faq.${index}.q`),
+    c.t(`services.faq.${index}.a`),
+  ]);
+
   return (
     <>
       <PageHero
-        eyebrow="Services"
-        title="Support shaped around a refined experience."
-        text="From styling guidance to personal support, every service is designed to feel calm, clear, and premium."
-        image="/pages/services-hero.png"
-        cta={{ label: "Contact Us", href: "/contact" }}
+        eyebrow={c.t("services.hero.eyebrow")}
+        title={c.t("services.hero.title")}
+        text={c.t("services.hero.text")}
+        image={c.t("services.hero.image")}
+        cta={{ label: c.t("services.hero.cta"), href: "/contact" }}
       />
       <section className="luxury-container py-24">
         <SectionHeading
-          eyebrow="What We Offer"
-          title="Careful support for every customer journey."
+          eyebrow={c.t("services.offer.eyebrow")}
+          title={c.t("services.offer.title")}
           centered
         />
         <div className="grid gap-7 md:grid-cols-2">
@@ -70,17 +77,12 @@ export default function ServicesPage() {
       <section className="border-y border-champagne/10 bg-black/35 py-24">
         <div className="luxury-container">
           <SectionHeading
-            eyebrow="Process"
-            title="A calm path from discovery to support."
+            eyebrow={c.t("services.process.eyebrow")}
+            title={c.t("services.process.title")}
             centered
           />
           <div className="grid gap-5 md:grid-cols-4">
-            {[
-              "Explore collections",
-              "Review details",
-              "Ask for guidance",
-              "Stay connected",
-            ].map((step, index) => (
+            {steps.map((step, index) => (
               <Reveal key={step}>
                 <div className="rounded-[1.6rem] border border-champagne/15 p-6">
                   <span className="font-serif text-5xl gold-text">
@@ -96,22 +98,13 @@ export default function ServicesPage() {
         </div>
       </section>
       <section className="luxury-container py-24">
-        <SectionHeading eyebrow="FAQ" title="Helpful details." centered />
+        <SectionHeading
+          eyebrow={c.t("services.faq.eyebrow")}
+          title={c.t("services.faq.title")}
+          centered
+        />
         <div className="mx-auto grid max-w-3xl gap-4">
-          {[
-            [
-              "How can I ask about a collection?",
-              "Use the Contact page to share your questions and we will respond with clear guidance.",
-            ],
-            [
-              "Is online checkout available right now?",
-              "Direct online checkout is currently unavailable. Contact us for pricing and availability details.",
-            ],
-            [
-              "Can I request styling advice?",
-              "Yes. Reach out with the collection or look you have in mind and we will help guide the next step.",
-            ],
-          ].map(([question, answer]) => (
+          {faqs.map(([question, answer]) => (
             <details
               key={question}
               className="rounded-2xl border border-champagne/15 p-5"
@@ -128,13 +121,15 @@ export default function ServicesPage() {
             href="/contact"
             className="rounded-full bg-gold-gradient px-8 py-4 text-sm font-bold uppercase tracking-[0.22em] text-black"
           >
-            Contact Us
+            {c.t("services.faq.button")}
           </Link>
         </div>
       </section>
       <EditorialImageStrip
-        images={getImageSet("services")}
-        title="Services Editorial Set"
+        images={c.strip("services")}
+        title={c.t("services.strip.title")}
+        eyebrow={c.t("strip.eyebrow")}
+        text={c.t("strip.text")}
       />
     </>
   );

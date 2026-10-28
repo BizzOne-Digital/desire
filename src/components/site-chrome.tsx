@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { CartProvider } from "@/components/cart-provider";
 import { IntroLoader } from "@/components/intro-loader";
-import { SiteFooter } from "@/components/site-footer";
+import { SiteFooter, type FooterContent } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 type SiteChromeProps = {
@@ -13,9 +13,10 @@ type SiteChromeProps = {
     businessName: string;
     logoUrl: string;
   };
+  footer: FooterContent;
 };
 
-export function SiteChrome({ children, settings }: SiteChromeProps) {
+export function SiteChrome({ children, settings, footer }: SiteChromeProps) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
   const [introFinished, setIntroFinished] = useState(isAdmin);
@@ -42,7 +43,7 @@ export function SiteChrome({ children, settings }: SiteChromeProps) {
       >
         {children}
       </main>
-      {!isAdmin && <SiteFooter businessName={settings.businessName} logoUrl={settings.logoUrl} />}
+      {!isAdmin && <SiteFooter businessName={settings.businessName} logoUrl={settings.logoUrl} content={footer} />}
     </CartProvider>
   );
 }

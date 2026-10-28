@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, Share2, ShoppingBag } from "lucide-react";

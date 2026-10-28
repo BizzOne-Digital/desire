@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/policy-page";
-import { policyContent } from "@/lib/content";
+import { getContent } from "@/lib/content-store";
 
 export const metadata: Metadata = {
   title: "Shipping and Returns",
-  description: "Shipping and return information for ONLY COLLECTION."
 };
 
-export default function ShippingReturnsPage() {
+export default async function Page() {
+  const c = await getContent();
+
   return (
     <PolicyPage
       eyebrow="Shipping"
       title="Shipping and Returns"
-      text="Helpful delivery timing, return expectations, and care for each order."
-      body={policyContent.shipping}
-      image="/pages/services-hero.png"
-      imageSeed="shipping"
+      text={c.t("shipping.hero.text")}
+      body={c.t("shipping.body")}
+      image={c.t("shipping.hero.image")}
+      stripImages={c.strip("shipping")}
+      stripTitle={c.t("shipping.strip.title")}
     />
   );
 }

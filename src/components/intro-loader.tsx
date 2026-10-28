@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import Image from "@/components/safe-image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export function IntroLoader({

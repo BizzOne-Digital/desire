@@ -10,7 +10,8 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "admin:create": "tsx scripts/create-admin.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -72,3 +72,66 @@ export const categorySchema = z.object({
   imageUrl: z.string().min(1),
   sortOrder: z.coerce.number().int().min(0).default(0),
 });
+
+const imageUrl = z.string().max(2048).refine((value) => value === "" || value.startsWith("/") || /^https?:\/\//.test(value), {
+  message: "Use an uploaded image, a /path, or an https:// URL."
+});
+
+export const contentFieldsSchema = z.record(z.string().max(120), z.string().max(8000));
+
+export const servicesListSchema = z
+  .array(
+    z.object({
+      title: z.string().trim().min(1).max(160),
+      slug: z.string().trim().min(1).max(160),
+      description: z.string().trim().max(2000),
+      imageUrl,
+      features: z.array(z.string().trim().min(1).max(200)).max(20)
+    })
+  )
+  .max(60);
+
+export const galleryListSchema = z
+  .array(
+    z.object({
+      title: z.string().trim().min(1).max(160),
+      description: z.string().trim().max(2000),
+      category: z.string().trim().min(1).max(80),
+      imageUrl
+    })
+  )
+  .max(200);
+
+export const catalogsListSchema = z
+  .array(
+    z.object({
+      id: z.string().trim().min(1).max(80),
+      name: z.string().trim().min(1).max(160),
+      slug: z.string().trim().min(1).max(160),
+      description: z.string().trim().max(2000),
+      yupooUrl: z.string().trim().max(2048),
+      imageUrl,
+      category: z.enum(["footwear", "accessories", "apparel", "watches", "bags"]),
+      featured: z.boolean().optional(),
+      requiresPassword: z.boolean().optional(),
+      password: z.string().max(120).optional(),
+      tags: z.array(z.string().trim().min(1).max(60)).max(20)
+    })
+  )
+  .max(100);
+
+export const siteSettingsSchema = z.object({
+  businessName: z.string().trim().min(1).max(120),
+  email: z.string().trim().email(),
+  phone: z.string().trim().max(60),
+  address: z.string().trim().max(300).default(""),
+  businessHours: z.string().trim().max(300).default(""),
+  logoUrl: imageUrl,
+  description: z.string().trim().max(1000).default(""),
+  socialLinks: z.object({
+    instagram: z.string().trim().max(500).default(""),
+    facebook: z.string().trim().max(500).default(""),
+    tiktok: z.string().trim().max(500).default(""),
+    pinterest: z.string().trim().max(500).default("")
+  })
+});
